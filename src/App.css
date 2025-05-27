@@ -12,35 +12,34 @@ body {
 
 .main-container {
   max-width: 480px;
-  margin: 20px auto;
+  margin: 0 auto;
   padding: 24px 16px;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 24px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   text-align: center;
+  min-height: 100vh;
 }
 
 .hero-section {
   margin-bottom: 32px;
   padding: 24px;
-  background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
+  background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
   border-radius: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  color: white;
 }
 
 h1 {
   font-size: 1.8rem;
-  color: #2d3748;
+  color: white;
   margin-bottom: 12px;
-  background: linear-gradient(45deg, #2d3748, #4a5568);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .subtitle {
   font-size: 1.2rem;
-  color: #4a5568;
+  color: rgba(255, 255, 255, 0.9);
   margin-bottom: 24px;
   line-height: 1.6;
 }
@@ -50,7 +49,7 @@ h1 {
   justify-content: space-around;
   margin: 24px 0;
   padding: 20px;
-  background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
@@ -60,7 +59,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   padding: 12px;
-  background: white;
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease;
@@ -73,13 +72,13 @@ h1 {
 .stat-number {
   font-size: 1.6rem;
   font-weight: bold;
-  color: #2d3748;
+  color: white;
   margin-bottom: 4px;
 }
 
 .stat-label {
   font-size: 1rem;
-  color: #718096;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .features {
@@ -87,7 +86,7 @@ h1 {
   justify-content: space-around;
   margin: 24px 0;
   padding: 20px;
-  background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
@@ -98,7 +97,7 @@ h1 {
   align-items: center;
   gap: 12px;
   padding: 16px;
-  background: white;
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease;
@@ -110,12 +109,12 @@ h1 {
 
 .feature-icon {
   font-size: 1.8rem;
-  color: #4299e1;
+  color: white;
 }
 
 .feature-text {
   font-size: 1rem;
-  color: #4a5568;
+  color: rgba(255, 255, 255, 0.9);
   text-align: center;
 }
 
@@ -126,31 +125,13 @@ h1 {
   margin: 24px 0;
 }
 
-.start-button button {
-  background: linear-gradient(45deg, #4299e1, #667eea);
-  color: white;
-  font-weight: bold;
-  padding: 18px;
-  border: none;
-  border-radius: 16px;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-size: 1.2rem;
-  box-shadow: 0 4px 6px rgba(66, 153, 225, 0.2);
-}
-
-.start-button button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(66, 153, 225, 0.3);
-}
-
 .menu-buttons button {
   font-size: 1.1rem;
   padding: 18px;
   border: none;
   border-radius: 16px;
-  background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
-  color: #2d3748;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
   cursor: pointer;
   transition: all 0.3s;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -159,7 +140,26 @@ h1 {
 .menu-buttons button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(135deg, #eef2f7 0%, #e2e8f0 100%);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.start-button button {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-weight: bold;
+  padding: 18px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.start-button button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .menu-buttons button:disabled {
@@ -173,7 +173,7 @@ h1 {
 .ad-banner {
   margin: 32px 0;
   padding: 20px;
-  background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
@@ -181,12 +181,12 @@ h1 {
 .footer {
   margin-top: 32px;
   padding-top: 24px;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer p {
   font-size: 1rem;
-  color: #718096;
+  color: rgba(255, 255, 255, 0.9);
   margin: 8px 0;
   line-height: 1.6;
 }
@@ -437,12 +437,15 @@ h1 {
     margin: 0;
     padding: 16px 12px;
     border-radius: 0;
-    min-height: 100vh;
   }
   
   .hero-section {
     margin-bottom: 20px;
     padding: 16px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
   }
   
   .subtitle {
@@ -517,10 +520,6 @@ h1 {
   
   .footer p {
     font-size: 0.9rem;
-  }
-  
-  h1 {
-    font-size: 1.5rem;
   }
   
   .test-header h2 {
