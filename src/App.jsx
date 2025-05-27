@@ -6,18 +6,29 @@ import FortunePage from './FortunePage'
 import TarotPage from './TarotPage'
 import { useEffect } from 'react'
 
+const loadKakaoAdFit = () => {
+  try {
+    const script = document.createElement('script');
+    script.src = '//t1.daumcdn.net/kas/static/ba.min.js';
+    script.async = true;
+    script.onerror = () => {
+      console.log('카카오 애드핏 로딩 실패');
+    };
+    document.body.appendChild(script);
+  } catch (error) {
+    console.log('카카오 애드핏 초기화 실패:', error);
+  }
+};
+
 function Home() {
   useEffect(() => {
-    // 카카오 애드핏 스크립트 로드
-    const script = document.createElement('script')
-    script.src = '//t1.daumcdn.net/kas/static/ba.min.js'
-    script.async = true
-    document.body.appendChild(script)
+    // 페이지 로드 후 지연 로딩
+    const timer = setTimeout(() => {
+      loadKakaoAdFit();
+    }, 1000);
 
-    return () => {
-      document.body.removeChild(script)
-    }
-  }, [])
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="main-container">
@@ -69,13 +80,13 @@ function Home() {
       </div>
 
       <div className="ad-banner">
-        <ins className="kakao_ad_area" 
-          style={{ display: 'none' }}
+        <ins 
+          className="kakao_ad_area" 
+          style={{ display: 'block', width: '100%', textAlign: 'center' }}
           data-ad-unit="DAN-rz0SXdqQnXMRUyny"
           data-ad-width="320"
           data-ad-height="100"
         />
-        <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
       </div>
 
       <div className="footer">

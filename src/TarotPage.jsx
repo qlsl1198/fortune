@@ -305,13 +305,13 @@ export default function TarotPage() {
       </div>
 
       <div className="ad-banner">
-        <ins className="kakao_ad_area" 
-          style={{ display: 'none' }}
-          data-ad-unit="DAN-rz0SXdqQnXMRUyny"
+        <ins 
+          className="kakao_ad_area" 
+          style={{ display: 'block', width: '100%', textAlign: 'center' }}
+          data-ad-unit="DAN-tarot-page-token"
           data-ad-width="320"
           data-ad-height="100"
         />
-        <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
       </div>
     </div>
   )
