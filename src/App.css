@@ -29,7 +29,7 @@ body {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #2d3748;
   margin-bottom: 12px;
   background: linear-gradient(45deg, #2d3748, #4a5568);
@@ -209,6 +209,13 @@ h1 {
   background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
   border-radius: 16px;
   color: white;
+}
+
+.test-header h2 {
+  margin: 0;
+  font-size: 1.6rem;
+  background: none;
+  -webkit-text-fill-color: white;
 }
 
 .back-button {
@@ -432,6 +439,14 @@ h1 {
     min-height: 100vh;
   }
   
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  .test-header h2 {
+    font-size: 1.3rem;
+  }
+  
   .hero-section,
   .test-container,
   .result-container {
@@ -500,6 +515,59 @@ h1 {
   background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
   border-radius: 24px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.birth-input {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 24px 0;
+  padding: 24px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.birth-input input {
+  width: 100%;
+  padding: 16px;
+  font-size: 1.1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.birth-input input:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+}
+
+.fortune-button {
+  background: linear-gradient(45deg, #4299e1, #667eea);
+  color: white;
+  font-weight: bold;
+  padding: 18px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 6px rgba(66, 153, 225, 0.2);
+  width: 100%;
+  margin-top: 16px;
+}
+
+.fortune-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(66, 153, 225, 0.3);
+}
+
+.fortune-button:disabled {
+  background: #cbd5e0;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .fortune-section {
@@ -806,7 +874,7 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transform: rotateY(180deg);
+  transform: rotateY(0deg);
 }
 
 .card-name {

@@ -3,46 +3,74 @@ import { useNavigate } from 'react-router-dom'
 
 const tarotCards = [
   {
-    name: '🌞 The Sun',
+    name: 'The Sun',
     meaning: '성공, 행복, 긍정적인 변화를 의미합니다. 당신의 노력이 결실을 맺을 때입니다.',
     advice: ['자신감을 가지세요', '목표를 향해 전진하세요', '긍정적인 마인드를 유지하세요'],
     timing: ['현재: 매우 좋은 시기', '가까운 미래: 계속되는 성공', '장기적: 지속적인 발전'],
     areas: ['사업/직업: 성공과 승진', '사랑: 행복한 관계', '건강: 활력과 에너지']
   },
   {
-    name: '🌙 The Moon',
+    name: 'The Moon',
     meaning: '직관, 영감, 잠재의식을 의미합니다. 당신의 내면의 목소리에 귀를 기울일 때입니다.',
     advice: ['직관을 믿으세요', '내면의 목소리를 들어보세요', '창의력을 발휘하세요'],
     timing: ['현재: 내면 성찰의 시기', '가까운 미래: 새로운 통찰', '장기적: 영적 성장'],
     areas: ['사업/직업: 창의적 접근', '사랑: 깊은 이해', '건강: 정신적 균형']
   },
   {
-    name: '⭐ The Star',
+    name: 'The Star',
     meaning: '희망, 영감, 새로운 시작을 의미합니다. 당신의 꿈을 향해 나아갈 때입니다.',
     advice: ['희망을 잃지 마세요', '새로운 시작을 두려워하지 마세요', '꿈을 향해 나아가세요'],
     timing: ['현재: 새로운 시작', '가까운 미래: 희망찬 변화', '장기적: 꿈의 실현'],
     areas: ['사업/직업: 새로운 기회', '사랑: 새로운 관계', '건강: 회복과 치유']
   },
   {
-    name: '💫 Wheel of Fortune',
-    meaning: 'Change, cycles, and destiny. Embrace life\'s changes.',
-    advice: ['Accept change', 'Be flexible', 'Seize new opportunities'],
-    timing: ['Present: Time of change', 'Near future: New phase', 'Long term: Cyclical growth'],
-    areas: ['Career: Change and opportunity', 'Love: Relationship changes', 'Health: New beginnings']
+    name: 'Wheel of Fortune',
+    meaning: '변화, 순환, 운명을 의미합니다. 인생의 변화를 받아들이세요.',
+    advice: ['변화를 받아들이세요', '유연하게 대처하세요', '새로운 기회를 잡으세요'],
+    timing: ['현재: 변화의 시기', '가까운 미래: 새로운 단계', '장기적: 순환적 성장'],
+    areas: ['사업/직업: 변화와 기회', '사랑: 관계의 변화', '건강: 새로운 시작']
   },
   {
-    name: '🌿 The High Priestess',
-    meaning: 'Wisdom, intuition, and inner knowledge. Trust your inner wisdom.',
-    advice: ['Trust your inner wisdom', 'Make calm judgments', 'Follow your intuition'],
-    timing: ['Present: Time for reflection', 'Near future: Insights', 'Long term: Wisdom accumulation'],
-    areas: ['Career: Wise decisions', 'Love: Deep understanding', 'Health: Balance and harmony']
+    name: 'The High Priestess',
+    meaning: '지혜, 직관, 내면의 지식을 의미합니다. 당신의 내면의 지혜를 믿으세요.',
+    advice: ['내면의 지혜를 믿으세요', '침착하게 판단하세요', '직관을 따르세요'],
+    timing: ['현재: 성찰의 시기', '가까운 미래: 통찰', '장기적: 지혜의 축적'],
+    areas: ['사업/직업: 현명한 결정', '사랑: 깊은 이해', '건강: 균형과 조화']
   },
   {
-    name: '⚔️ The Sword',
-    meaning: 'Decision, action, and change. Make clear decisions.',
-    advice: ['Make decisions', 'Take action', 'Don\'t fear change'],
-    timing: ['Present: Time for decisions', 'Near future: Results of action', 'Long term: Goal achievement'],
-    areas: ['Career: Decisive action', 'Love: Clear choices', 'Health: New beginnings']
+    name: 'The Magician',
+    meaning: '창의성, 의지력, 새로운 시작을 의미합니다. 당신의 잠재력을 발휘하세요.',
+    advice: ['잠재력을 믿으세요', '의지력을 발휘하세요', '창의적으로 접근하세요'],
+    timing: ['현재: 새로운 시작', '가까운 미래: 성공의 기회', '장기적: 목표 달성'],
+    areas: ['사업/직업: 창의적 성공', '사랑: 새로운 관계', '건강: 활력 회복']
+  },
+  {
+    name: 'The Empress',
+    meaning: '풍요, 창조성, 모성적 에너지를 의미합니다. 당신의 창조적 에너지를 발휘하세요.',
+    advice: ['창조성을 발휘하세요', '풍요로움을 받아들이세요', '자연과 조화를 이루세요'],
+    timing: ['현재: 성장의 시기', '가까운 미래: 풍요로움', '장기적: 지속적 성장'],
+    areas: ['사업/직업: 창조적 성공', '사랑: 풍요로운 관계', '건강: 활력과 건강']
+  },
+  {
+    name: 'The Emperor',
+    meaning: '권위, 안정, 구조를 의미합니다. 당신의 리더십을 발휘하세요.',
+    advice: ['리더십을 발휘하세요', '체계적으로 접근하세요', '안정을 추구하세요'],
+    timing: ['현재: 안정의 시기', '가까운 미래: 성공', '장기적: 지속적 성장'],
+    areas: ['사업/직업: 리더십 발휘', '사랑: 안정된 관계', '건강: 균형과 안정']
+  },
+  {
+    name: 'The Lovers',
+    meaning: '사랑, 선택, 조화를 의미합니다. 당신의 마음에 따라 선택하세요.',
+    advice: ['마음의 소리에 귀를 기울이세요', '진정한 선택을 하세요', '조화를 추구하세요'],
+    timing: ['현재: 선택의 시기', '가까운 미래: 새로운 관계', '장기적: 조화로운 발전'],
+    areas: ['사업/직업: 새로운 협력', '사랑: 진정한 관계', '건강: 균형과 조화']
+  },
+  {
+    name: 'The Hermit',
+    meaning: '내면의 지혜, 성찰, 고독을 의미합니다. 당신의 내면을 탐구하세요.',
+    advice: ['내면을 탐구하세요', '지혜를 찾으세요', '고독을 받아들이세요'],
+    timing: ['현재: 성찰의 시기', '가까운 미래: 통찰', '장기적: 지혜의 축적'],
+    areas: ['사업/직업: 깊은 통찰', '사랑: 내면의 성장', '건강: 정신적 균형']
   }
 ]
 
