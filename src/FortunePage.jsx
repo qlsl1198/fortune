@@ -137,12 +137,12 @@ export default function FortunePage() {
   }
 
   const handleShare = () => {
-    if (!fortune) return
+    if (!result) return;
     
-    const shareText = `✨ 오늘의 운세 ✨\n\n${fortune.emoji} ${fortune.title}\n\n${fortune.desc}\n\n행운의 아이템: ${fortune.lucky.join(', ')}\n\n조언: ${fortune.advice.join(', ')}\n\n운이 좋은 시간: ${fortune.timing.join(', ')}\n\n#운세 #오늘의운세 #운세보기 #심리테스트`
-    navigator.clipboard.writeText(shareText)
-    setShowCopied(true)
-    setTimeout(() => setShowCopied(false), 2000)
+    const shareText = `✨ 운세 결과 ✨\n\n행운의 숫자: ${result.luckyNumber}\n행운의 색: ${result.luckyColor}\n행운의 방향: ${result.luckyDirection}\n\n운세\n애정운: ${result.fortune.love}\n직장운: ${result.fortune.career}\n건강운: ${result.fortune.health}\n재물운: ${result.fortune.wealth}\n\n조언\n${result.advice.join('\n')}\n\n주의사항\n${result.warning.join('\n')}\n\n#운세 #운세보기 #심리테스트`;
+    navigator.clipboard.writeText(shareText);
+    setShowCopied(true);
+    setTimeout(() => setShowCopied(false), 2000);
   }
 
   return (
@@ -238,11 +238,12 @@ export default function FortunePage() {
           </div>
 
           <div className="result-actions">
-            <button className="share-button" onClick={() => {
-              const text = `운세 결과\n\n행운의 숫자: ${result.luckyNumber}\n행운의 색: ${result.luckyColor}\n행운의 방향: ${result.luckyDirection}\n\n운세\n애정운: ${result.fortune.love}\n직장운: ${result.fortune.career}\n건강운: ${result.fortune.health}\n재물운: ${result.fortune.wealth}\n\n조언\n${result.advice.join('\n')}\n\n주의사항\n${result.warning.join('\n')}`
-              navigator.clipboard.writeText(text)
-            }}>
-              결과 공유하기
+            <button 
+              className="share-button" 
+              onClick={handleShare}
+              disabled={!result}
+            >
+              {showCopied ? '복사됨!' : '결과 공유하기'}
             </button>
             <button className="retry-button" onClick={handleRetry}>
               다시하기
