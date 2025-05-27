@@ -15,10 +15,11 @@ body {
   margin: 0;
   padding: 24px 12px;
   background: rgba(255, 255, 255, 0.95);
-  border-radius: 24px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  box-shadow: none;
   text-align: center;
   min-height: 100vh;
+  width: 100%;
 }
 
 .hero-section {
