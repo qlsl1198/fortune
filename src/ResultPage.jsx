@@ -156,75 +156,61 @@ function ResultPage() {
   };
 
   return (
-    <div className="test-container">
-      <div className="test-header">
-        <h1 className="test-title">테스트 결과</h1>
-        <button 
-          className="home-button"
-          onClick={() => navigate('/')}
-        >
-          메인으로
-        </button>
-      </div>
+    <div className="result-container">
+      <div className="result-card">
+        <h2 className="result-type">{result.type}</h2>
+        <p className="result-description">{result.description}</p>
 
-      <div className="question-container">
-        <div className="result-content">
-          <h2 className="result-type">{result.type}</h2>
-          <p className="result-description">{result.description}</p>
-
-          <div className="result-grid">
-            <div className="result-section">
-              <h3>특징</h3>
-              <div className="traits-container">
-                {result.traits.map((trait, index) => (
-                  <span key={index} className="trait-tag">{trait}</span>
-                ))}
-              </div>
-            </div>
-
-            <div className="result-section">
-              <h3>강점</h3>
-              <ul className="result-list">
-                {result.strengths.map((strength, index) => (
-                  <li key={index}>{strength}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="result-section">
-              <h3>약점</h3>
-              <ul className="result-list">
-                {result.weaknesses.map((weakness, index) => (
-                  <li key={index}>{weakness}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="result-section">
-              <h3>추천 직업</h3>
-              <div className="careers-container">
-                {result.careers.map((career, index) => (
-                  <span key={index} className="career-tag">{career}</span>
-                ))}
-              </div>
-            </div>
+        <div className="result-section">
+          <h3>특징</h3>
+          <div className="traits-container">
+            {result.traits.map((trait, index) => (
+              <span key={index} className="trait-tag">{trait}</span>
+            ))}
           </div>
+        </div>
 
-          <div className="result-actions">
-            <button 
-              className="share-button" 
-              onClick={handleShare}
-              disabled={!result}
-            >
-              {showCopied ? '복사됨!' : '결과 공유하기'}
-            </button>
-            <button 
-              className="retry-button" 
-              onClick={() => navigate('/test')}
-            >
-              다시하기
-            </button>
+        <div className="result-section">
+          <h3>강점</h3>
+          <ul className="result-list">
+            {result.strengths.map((strength, index) => (
+              <li key={index}>{strength}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="result-section">
+          <h3>약점</h3>
+          <ul className="result-list">
+            {result.weaknesses.map((weakness, index) => (
+              <li key={index}>{weakness}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="result-section">
+          <h3>추천 직업</h3>
+          <div className="careers-container">
+            {result.careers.map((career, index) => (
+              <span key={index} className="career-tag">{career}</span>
+            ))}
           </div>
+        </div>
+
+        <div className="result-actions">
+          <button 
+            className="share-button" 
+            onClick={handleShare}
+            disabled={!result}
+          >
+            {showCopied ? '복사됨!' : '결과 공유하기'}
+          </button>
+          <button 
+            className="retry-button" 
+            onClick={() => navigate('/test')}
+          >
+            다시하기
+          </button>
         </div>
       </div>
     </div>
