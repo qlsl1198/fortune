@@ -1,212 +1,226 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import './App.css'
 
 const questions = [
   {
-    question: "친구들과 함께 있을 때 당신은 주로...",
+    id: 1,
+    question: '친구들과 만났을 때 나는...',
     options: [
-      "대화를 주도하고 분위기를 이끌어요",
-      "다른 사람들의 이야기를 잘 들어주는 편이에요",
-      "상황에 따라 적절히 대응해요",
-      "조용히 관찰하는 편이에요"
+      { text: '대화를 주도하며 분위기를 이끌어간다', type: 'leader' },
+      { text: '다른 사람들의 이야기를 듣는 것을 좋아한다', type: 'listener' }
     ]
   },
   {
-    question: "스트레스를 받았을 때 당신은...",
+    id: 2,
+    question: '문제를 해결할 때 나는...',
     options: [
-      "활동적인 운동이나 취미로 해소해요",
-      "혼자만의 시간을 가지며 휴식을 취해요",
-      "친구나 가족과 대화하며 해소해요",
-      "음악이나 영화를 보며 해소해요"
+      { text: '직관과 감에 의존한다', type: 'intuitive' },
+      { text: '사실과 경험에 의존한다', type: 'practical' }
     ]
   },
   {
-    question: "새로운 도전을 앞두고 있을 때 당신은...",
+    id: 3,
+    question: '의사결정을 할 때 나는...',
     options: [
-      "즉시 실행에 옮기고 시행착오를 겪어요",
-      "철저한 계획을 세우고 준비해요",
-      "다른 사람의 조언을 구하고 결정해요",
-      "기회가 올 때까지 기다려요"
+      { text: '논리와 객관적 사실을 중시한다', type: 'logical' },
+      { text: '감정과 관계를 중시한다', type: 'emotional' }
     ]
   },
   {
-    question: "문제가 발생했을 때 당신은...",
+    id: 4,
+    question: '일상생활에서 나는...',
     options: [
-      "논리적으로 분석하고 해결책을 찾아요",
-      "감정에 따라 직관적으로 해결해요",
-      "다른 사람의 도움을 받아 해결해요",
-      "시간이 해결해줄 때까지 기다려요"
+      { text: '계획을 세우고 그대로 실행한다', type: 'planner' },
+      { text: '상황에 따라 유연하게 대처한다', type: 'flexible' }
     ]
   },
   {
-    question: "당신의 이상적인 주말은...",
+    id: 5,
+    question: '스트레스를 받았을 때 나는...',
     options: [
-      "친구들과 함께하는 활동적인 시간",
-      "혼자만의 여유로운 시간",
-      "가족과 함께하는 따뜻한 시간",
-      "새로운 취미나 공부를 하는 시간"
+      { text: '활동적으로 스트레스를 해소한다', type: 'active' },
+      { text: '조용히 혼자만의 시간을 가진다', type: 'calm' }
     ]
   },
   {
-    question: "의견이 다른 사람과 대화할 때 당신은...",
+    id: 6,
+    question: '새로운 도전을 할 때 나는...',
     options: [
-      "자신의 의견을 강하게 주장해요",
-      "상대방의 의견을 존중하며 대화해요",
-      "중간에서 조율하려고 노력해요",
-      "불편한 상황을 피하려고 해요"
+      { text: '즉시 도전하고 경험해본다', type: 'adventurous' },
+      { text: '신중하게 검토하고 준비한다', type: 'cautious' }
     ]
   },
   {
-    question: "당신의 강점은...",
+    id: 7,
+    question: '갈등 상황에서 나는...',
     options: [
-      "리더십과 실행력",
-      "공감능력과 이해심",
-      "분석력과 판단력",
-      "창의력과 상상력"
+      { text: '직접적으로 문제를 해결하려 한다', type: 'direct' },
+      { text: '양측의 입장을 고려하며 조화를 찾는다', type: 'harmonious' }
     ]
   },
   {
-    question: "실패했을 때 당신은...",
+    id: 8,
+    question: '목표를 향해 나아갈 때 나는...',
     options: [
-      "즉시 다시 도전해요",
-      "원인을 분석하고 교훈을 얻어요",
-      "다른 사람의 조언을 구해요",
-      "잠시 휴식을 취하고 마음을 다잡아요"
-    ]
-  },
-  {
-    question: "당신이 가장 중요하게 생각하는 것은...",
-    options: [
-      "성공과 성취",
-      "인간관계와 사랑",
-      "안정과 평화",
-      "자유와 창의성"
-    ]
-  },
-  {
-    question: "미래에 대해 생각할 때 당신은...",
-    options: [
-      "구체적인 목표와 계획을 세워요",
-      "현재에 충실하며 살아가요",
-      "가족과의 행복한 미래를 꿈꿔요",
-      "새로운 가능성들을 상상해요"
+      { text: '결과와 성과를 중시한다', type: 'result' },
+      { text: '과정과 경험을 중시한다', type: 'process' }
     ]
   }
 ]
 
-const personalityTypes = [
-  {
-    type: '🌞 활발한 리더형',
-    description: '당신은 에너지 넘치고 리더십이 뛰어난 타입입니다. 새로운 도전을 두려워하지 않고, 주변 사람들을 이끄는 것을 좋아합니다.',
-    traits: ['리더십', '활동성', '도전정신', '사교성'],
-    strengths: ['문제 해결 능력이 뛰어남', '목표 지향적', '적응력이 좋음', '의사소통 능력이 뛰어남'],
-    weaknesses: ['인내심이 부족할 수 있음', '감정적일 수 있음', '완벽주의적 성향'],
-    careers: ['경영/관리직', '영업직', '강사/교육자', '프로젝트 매니저']
-  },
-  {
-    type: '🌙 감성적인 예술가형',
-    description: '당신은 섬세한 감성과 창의력을 가진 타입입니다. 예술과 아름다움에 관심이 많으며, 깊이 있는 사고를 합니다.',
-    traits: ['감성적', '창의적', '직관적', '이상주의적'],
-    strengths: ['창의력이 뛰어남', '공감능력이 좋음', '예술적 감각이 뛰어남', '깊이 있는 통찰력'],
-    weaknesses: ['현실감이 부족할 수 있음', '감정에 치우칠 수 있음', '결정을 미루는 경향'],
-    careers: ['디자이너', '작가', '상담사', '예술가']
-  },
-  {
-    type: '💡 논리적인 분석가형',
-    description: '당신은 논리적이고 분석적인 사고방식을 가진 타입입니다. 객관적인 판단과 체계적인 접근을 선호합니다.',
-    traits: ['논리적', '분석적', '객관적', '체계적'],
-    strengths: ['문제 해결 능력이 뛰어남', '객관적 판단력', '집중력이 좋음', '계획 수립 능력'],
-    weaknesses: ['감정 표현이 서툴 수 있음', '완벽주의적 성향', '유연성이 부족할 수 있음'],
-    careers: ['엔지니어', '과학자', '프로그래머', '분석가']
-  },
-  {
-    type: '🌱 균형잡힌 조화형',
-    description: '당신은 균형과 조화를 중요시하는 타입입니다. 다양한 상황에 잘 적응하며, 타인과의 관계를 소중히 여깁니다.',
-    traits: ['균형감', '적응력', '협력적', '배려심'],
-    strengths: ['대인관계 능력이 뛰어남', '적응력이 좋음', '조정 능력이 뛰어남', '공감능력이 좋음'],
-    weaknesses: ['자기주장이 부족할 수 있음', '갈등 회피 성향', '결정을 미루는 경향'],
-    careers: ['상담사', '교육자', '인사담당', '고객서비스']
-  }
-]
-
-export default function TestPage() {
+function TestPage() {
+  const navigate = useNavigate()
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState([])
-  const navigate = useNavigate()
+  const [showProgress, setShowProgress] = useState(false)
 
-  const handleAnswer = (answer) => {
-    const newAnswers = [...answers, answer]
+  const handleAnswer = (type) => {
+    const newAnswers = [...answers, type]
     setAnswers(newAnswers)
+    setShowProgress(true)
 
     if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1)
+      setTimeout(() => {
+        setCurrentQuestion(currentQuestion + 1)
+        setShowProgress(false)
+      }, 500)
     } else {
-      // 결과 계산
-      const resultIndex = Math.floor(Math.random() * personalityTypes.length)
-      const result = personalityTypes[resultIndex]
-      navigate('/result', { state: { result } })
+      const result = calculatePersonalityType(newAnswers)
+      setTimeout(() => {
+        navigate('/result', { state: { result } })
+      }, 500)
     }
   }
 
-  const handleBack = () => {
-    if (currentQuestion > 0) {
-      setCurrentQuestion(currentQuestion - 1)
-      setAnswers(answers.slice(0, -1))
+  const calculatePersonalityType = (answers) => {
+    const personalityTypes = [
+      {
+        type: '🌞 활발한 리더형',
+        description: '당신은 에너지 넘치고 리더십이 뛰어난 타입입니다. 새로운 도전을 두려워하지 않고, 주변 사람들을 이끄는 것을 좋아합니다.',
+        traits: ['리더십', '활동성', '도전정신', '사교성'],
+        strengths: ['문제 해결 능력이 뛰어남', '목표 지향적', '적응력이 좋음', '의사소통 능력이 뛰어남'],
+        weaknesses: ['인내심이 부족할 수 있음', '감정적일 수 있음', '완벽주의적 성향'],
+        careers: ['경영/관리직', '영업직', '강사/교육자', '프로젝트 매니저']
+      },
+      {
+        type: '🌙 감성적인 예술가형',
+        description: '당신은 섬세한 감성과 창의력을 가진 타입입니다. 예술과 아름다움에 관심이 많으며, 깊이 있는 사고를 합니다.',
+        traits: ['감성적', '창의적', '직관적', '이상주의적'],
+        strengths: ['창의력이 뛰어남', '공감능력이 좋음', '예술적 감각이 뛰어남', '깊이 있는 통찰력'],
+        weaknesses: ['현실감이 부족할 수 있음', '감정에 치우칠 수 있음', '결정을 미루는 경향'],
+        careers: ['디자이너', '작가', '상담사', '예술가']
+      },
+      {
+        type: '💡 논리적인 분석가형',
+        description: '당신은 논리적이고 분석적인 사고방식을 가진 타입입니다. 객관적인 판단과 체계적인 접근을 선호합니다.',
+        traits: ['논리적', '분석적', '객관적', '체계적'],
+        strengths: ['문제 해결 능력이 뛰어남', '객관적 판단력', '집중력이 좋음', '계획 수립 능력'],
+        weaknesses: ['감정 표현이 서툴 수 있음', '완벽주의적 성향', '유연성이 부족할 수 있음'],
+        careers: ['엔지니어', '과학자', '프로그래머', '분석가']
+      },
+      {
+        type: '🌱 균형잡힌 조화형',
+        description: '당신은 균형과 조화를 중요시하는 타입입니다. 다양한 상황에 잘 적응하며, 타인과의 관계를 소중히 여깁니다.',
+        traits: ['균형감', '적응력', '협력적', '배려심'],
+        strengths: ['대인관계 능력이 뛰어남', '적응력이 좋음', '조정 능력이 뛰어남', '공감능력이 좋음'],
+        weaknesses: ['자기주장이 부족할 수 있음', '갈등 회피 성향', '결정을 미루는 경향'],
+        careers: ['상담사', '교육자', '인사담당', '고객서비스']
+      },
+      {
+        type: '✨ 자유로운 영혼형',
+        description: '당신은 자유롭고 창의적인 영혼을 가진 타입입니다. 새로운 경험을 추구하며, 독창적인 생각을 합니다.',
+        traits: ['자유로움', '창의적', '모험적', '독창적'],
+        strengths: ['창의력이 뛰어남', '적응력이 좋음', '새로운 시도 두려워하지 않음', '독립적'],
+        weaknesses: ['규칙을 싫어함', '책임감이 부족할 수 있음', '일상적인 것에 지루함을 느낌'],
+        careers: ['예술가', '여행작가', '프리랜서', '창업가']
+      },
+      {
+        type: '💫 따뜻한 보호자형',
+        description: '당신은 따뜻한 마음과 보호 본능을 가진 타입입니다. 타인을 돕고 보호하는 것을 좋아하며, 안정적인 관계를 추구합니다.',
+        traits: ['보호적', '배려심', '안정적', '신뢰성'],
+        strengths: ['공감능력이 뛰어남', '책임감이 강함', '신뢰성', '보호 본능'],
+        weaknesses: ['과보호적일 수 있음', '자기희생적 성향', '변화를 두려워할 수 있음'],
+        careers: ['의료인', '상담사', '교사', '사회복지사']
+      }
+    ]
+
+    // 답변 패턴에 따라 성격 유형 결정
+    const typeCounts = {
+      leader: 0, listener: 0,
+      intuitive: 0, practical: 0,
+      logical: 0, emotional: 0,
+      planner: 0, flexible: 0,
+      active: 0, calm: 0,
+      adventurous: 0, cautious: 0,
+      direct: 0, harmonious: 0,
+      result: 0, process: 0
+    }
+
+    answers.forEach(type => {
+      typeCounts[type]++
+    })
+
+    // 답변 패턴 분석
+    const isLeader = typeCounts.leader > typeCounts.listener
+    const isIntuitive = typeCounts.intuitive > typeCounts.practical
+    const isEmotional = typeCounts.emotional > typeCounts.logical
+    const isFlexible = typeCounts.flexible > typeCounts.planner
+    const isActive = typeCounts.active > typeCounts.calm
+    const isAdventurous = typeCounts.adventurous > typeCounts.cautious
+    const isHarmonious = typeCounts.harmonious > typeCounts.direct
+    const isProcess = typeCounts.process > typeCounts.result
+
+    // 성격 유형 결정 로직
+    if (isLeader && isActive && !isEmotional) {
+      return personalityTypes[0] // 활발한 리더형
+    } else if (isEmotional && isIntuitive && isProcess) {
+      return personalityTypes[1] // 감성적인 예술가형
+    } else if (!isEmotional && !isIntuitive && !isFlexible) {
+      return personalityTypes[2] // 논리적인 분석가형
+    } else if (isHarmonious && !isLeader && !isAdventurous) {
+      return personalityTypes[3] // 균형잡힌 조화형
+    } else if (isAdventurous && isFlexible && !isPlanner) {
+      return personalityTypes[4] // 자유로운 영혼형
     } else {
-      navigate('/')
+      return personalityTypes[5] // 따뜻한 보호자형
     }
   }
 
   const progress = ((currentQuestion + 1) / questions.length) * 100
 
   return (
-    <div className="main-container">
-      <div className="test-header">
-        <button onClick={handleBack} className="back-button">
-          ← 메인으로
-        </button>
-        <h2>성격 유형 테스트</h2>
-        <div className="progress-info">
-          {currentQuestion + 1} / {questions.length}
-        </div>
-      </div>
-
+    <div className="test-container">
       <div className="progress-bar">
-        <div className="progress" style={{ width: `${progress}%` }}></div>
+        <div 
+          className="progress-fill"
+          style={{ width: `${progress}%` }}
+        />
       </div>
 
-      <div className="test-container">
-        <div className="question">
-          <h3>Q{currentQuestion + 1}. {questions[currentQuestion].question}</h3>
-        </div>
-        <div className="options">
+      <div className="question-container">
+        <h2 className="question-number">
+          Q{currentQuestion + 1}
+        </h2>
+        <p className="question-text">
+          {questions[currentQuestion].question}
+        </p>
+
+        <div className="options-container">
           {questions[currentQuestion].options.map((option, index) => (
             <button
               key={index}
-              onClick={() => handleAnswer(index)}
-              className="option-button"
+              className={`option-button ${showProgress ? 'disabled' : ''}`}
+              onClick={() => handleAnswer(option.type)}
+              disabled={showProgress}
             >
-              {option}
+              {option.text}
             </button>
           ))}
         </div>
       </div>
-
-      <div className="test-description">
-        <p>💡 이 테스트는 당신의 성격 유형을 분석하여 가장 잘 맞는 유형을 찾아드립니다.</p>
-        <p>💡 정답은 없으니 편안한 마음으로 답변해주세요.</p>
-        <p>💡 모든 질문에 답변하시면 상세한 결과를 확인하실 수 있습니다.</p>
-      </div>
-
-      <div className="ad-banner">
-        <ins 
-          className="kakao_ad_area" 
-          style={{ display: 'block', width: '100%', textAlign: 'center' }}
-          data-ad-unit="DAN-YoGidYmDgk3hwQ0d"
-          data-ad-width="320"
-          data-ad-height="100"
-        />
-      </div>
     </div>
   )
-} 
+}
+
+export default TestPage 
