@@ -1,4 +1,6 @@
-import { useLocation, useNavigate } from 'react-router-dom'
+import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import './App.css';
 
 const personalityTypes = [
   {
@@ -57,109 +59,94 @@ const personalityTypes = [
   }
 ]
 
-export default function ResultPage() {
-  const location = useLocation()
-  const navigate = useNavigate()
-  const answers = location.state?.answers || []
+function ResultPage() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [showCopied, setShowCopied] = useState(false);
+  const { result } = location.state || {};
 
-  // 답변을 기반으로 성격 유형 결정
-  const getPersonalityType = () => {
-    const scores = new Array(personalityTypes.length).fill(0)
-    
-    answers.forEach((answer, index) => {
-      // 각 질문별로 가중치를 다르게 적용
-      const weight = Math.floor(index / 2) + 1
-      scores[answer] += weight
-    })
-
-    return scores.indexOf(Math.max(...scores))
+  if (!result) {
+    return <div>결과를 찾을 수 없습니다.</div>;
   }
-
-  const personalityType = personalityTypes[getPersonalityType()]
 
   const handleShare = () => {
-    const text = `나의 성격 유형은 "${personalityType.title}"입니다!\n\n${personalityType.desc}\n\n#성격유형테스트 #심리테스트`
-    navigator.clipboard.writeText(text)
-    alert('결과가 클립보드에 복사되었습니다!')
-  }
+    const shareText = `✨ ${result.type} 성격유형 테스트 결과 ✨\n\n${result.description}\n\n${result.traits.join(' ')}\n\n강점:\n${result.strengths.join('\n')}\n\n약점:\n${result.weaknesses.join('\n')}\n\n추천 직업:\n${result.careers.join('\n')}\n\n#성격유형테스트 #${result.type} #MBTI #심리테스트`;
+    navigator.clipboard.writeText(shareText);
+    setShowCopied(true);
+    setTimeout(() => setShowCopied(false), 2000);
+  };
 
   return (
-    <div className="main-container">
-      <div className="result-header">
-        <button onClick={() => navigate('/')} className="back-button">
-          ← 메인으로
-        </button>
-        <h2>나의 성격 유형</h2>
-      </div>
-
-      <div className="result-container">
-        <h3 className="result-title">{personalityType.title}</h3>
-        <p className="result-desc">{personalityType.desc}</p>
-
-        <div className="result-section">
-          <h4>주요 특성</h4>
-          <div className="traits">
-            {personalityType.traits.map((trait, index) => (
-              <span key={index} className="trait-tag">{trait}</span>
-            ))}
+    <div className="instagram-result-container">
+      <div className="instagram-card">
+        <div className="instagram-header">
+          <div className="profile">
+            <span className="profile-pic">🧠</span>
+            <div className="profile-info">
+              <div className="username">성격유형 테스트</div>
+              <div className="location">심리테스트</div>
+            </div>
           </div>
-        </div>
-
-        <div className="result-section">
-          <h4>강점</h4>
-          <ul>
-            {personalityType.strengths.map((strength, index) => (
-              <li key={index}>{strength}</li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="result-section">
-          <h4>개선할 점</h4>
-          <ul>
-            {personalityType.weaknesses.map((weakness, index) => (
-              <li key={index}>{weakness}</li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="result-section">
-          <h4>추천 직업</h4>
-          <div className="career-tags">
-            {personalityType.career.map((job, index) => (
-              <span key={index} className="career-tag">{job}</span>
-            ))}
-          </div>
-        </div>
-
-        <div className="result-section">
-          <h4>관계 스타일</h4>
-          <ul>
-            {personalityType.relationships.map((rel, index) => (
-              <li key={index}>{rel}</li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="share-buttons">
-          <button onClick={handleShare} className="share-button">
-            결과 공유하기
+          <button className="share-button" onClick={handleShare}>
+            {showCopied ? '복사됨!' : '공유하기'}
           </button>
-          <button onClick={() => navigate('/test')} className="retry-button">
+        </div>
+
+        <div className="instagram-content">
+          <div className="result-emoji">✨</div>
+          <div className="result-title">{result.type}</div>
+          <div className="result-desc">{result.description}</div>
+
+          <div className="instagram-grid">
+            <div className="grid-item">
+              <h4>특징</h4>
+              <div className="traits">
+                {result.traits.map((trait, index) => (
+                  <span key={index} className="trait-tag">{trait}</span>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid-item">
+              <h4>강점</h4>
+              <ul className="instagram-list">
+                {result.strengths.map((strength, index) => (
+                  <li key={index}>💪 {strength}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="grid-item">
+              <h4>약점</h4>
+              <ul className="instagram-list">
+                {result.weaknesses.map((weakness, index) => (
+                  <li key={index}>⚠️ {weakness}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="grid-item">
+              <h4>추천 직업</h4>
+              <div className="career-tags">
+                {result.careers.map((career, index) => (
+                  <span key={index} className="career-tag">{career}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="instagram-footer">
+          <div className="hashtags">
+            #성격유형테스트 #{result.type} #MBTI #심리테스트
+          </div>
+          <button className="retry-button" onClick={() => navigate('/test')}>
             다시 테스트하기
           </button>
         </div>
       </div>
-
-      <div className="ad-banner">
-        <ins className="kakao_ad_area" 
-          style={{ display: 'none' }}
-          data-ad-unit="DAN-rz0SXdqQnXMRUyny"
-          data-ad-width="320"
-          data-ad-height="100"
-        />
-        <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
-      </div>
     </div>
-  )
-} 
+  );
+}
+
+export default ResultPage; 

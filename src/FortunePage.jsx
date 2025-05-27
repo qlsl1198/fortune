@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import './App.css'
 
 const fortunes = [
   {
@@ -78,6 +79,8 @@ export default function FortunePage() {
   const [birthDate, setBirthDate] = useState('')
   const [showFortune, setShowFortune] = useState(false)
   const navigate = useNavigate()
+  const [showCopied, setShowCopied] = useState(false)
+  const [fortune, setFortune] = useState(null)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -89,6 +92,19 @@ export default function FortunePage() {
     const date = new Date(birthDate)
     const day = date.getDate()
     return fortunes[day % fortunes.length]
+  }
+
+  const handleGetFortune = () => {
+    setFortune(getFortune())
+  }
+
+  const handleShare = () => {
+    if (!fortune) return
+    
+    const shareText = `✨ 오늘의 운세 ✨\n\n${fortune.emoji} ${fortune.title}\n\n${fortune.desc}\n\n행운의 아이템: ${fortune.lucky.join(', ')}\n\n조언: ${fortune.advice.join(', ')}\n\n운이 좋은 시간: ${fortune.timing.join(', ')}\n\n#운세 #오늘의운세 #운세보기 #심리테스트`
+    navigator.clipboard.writeText(shareText)
+    setShowCopied(true)
+    setTimeout(() => setShowCopied(false), 2000)
   }
 
   return (
@@ -122,69 +138,81 @@ export default function FortunePage() {
           </form>
         ) : (
           <div className="instagram-result-container">
-            <div className="instagram-card">
-              <div className="instagram-header">
-                <div className="profile-section">
-                  <div className="profile-pic">🔮</div>
-                  <div className="profile-info">
-                    <div className="username">오늘의 운세</div>
-                    <div className="location">별자리 & 탄생수 기반</div>
-                  </div>
-                </div>
-                <button className="share-button" onClick={() => {
-                  const text = `오늘의 운세: ${getFortune().title}\n\n${getFortune().desc}\n\n#운세 #별자리 #탄생수 #오늘의운세`
-                  navigator.clipboard.writeText(text)
-                  alert('결과가 클립보드에 복사되었습니다!')
-                }}>
-                  공유하기
-                </button>
-              </div>
-
-              <div className="instagram-content">
-                <div className="result-emoji">✨</div>
-                <h3 className="result-title">{getFortune().title}</h3>
-                <p className="result-desc">{getFortune().desc}</p>
-
-                <div className="instagram-grid">
-                  <div className="grid-item">
-                    <h4>행운 아이템</h4>
-                    <div className="lucky-items">
-                      {getFortune().lucky.map((item, index) => (
-                        <div key={index} className="lucky-item">🍀 {item}</div>
-                      ))}
+            {!fortune ? (
+              <div className="instagram-card">
+                <div className="instagram-header">
+                  <div className="profile">
+                    <span className="profile-pic">🔮</span>
+                    <div className="profile-info">
+                      <div className="username">오늘의 운세</div>
+                      <div className="location">운세보기</div>
                     </div>
                   </div>
-
-                  <div className="grid-item">
-                    <h4>오늘의 조언</h4>
-                    <ul className="instagram-list">
-                      {getFortune().advice.map((item, index) => (
-                        <li key={index}>💫 {item}</li>
-                      ))}
-                    </ul>
+                </div>
+                <div className="instagram-content">
+                  <div className="result-emoji">✨</div>
+                  <div className="result-title">오늘의 운세를 확인하세요</div>
+                  <div className="result-desc">
+                    버튼을 눌러 오늘의 운세를 확인해보세요.
+                    행운의 아이템과 조언을 받아보세요.
                   </div>
+                  <button className="retry-button" onClick={handleGetFortune}>
+                    운세 보기
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="instagram-card">
+                <div className="instagram-header">
+                  <div className="profile">
+                    <span className="profile-pic">🔮</span>
+                    <div className="profile-info">
+                      <div className="username">오늘의 운세</div>
+                      <div className="location">운세보기</div>
+                    </div>
+                  </div>
+                  <button className="share-button" onClick={handleShare}>
+                    {showCopied ? '복사됨!' : '공유하기'}
+                  </button>
+                </div>
 
-                  <div className="grid-item">
-                    <h4>시간대별 운세</h4>
-                    <ul className="instagram-list">
-                      {getFortune().timing.map((item, index) => (
-                        <li key={index}>⏰ {item}</li>
-                      ))}
-                    </ul>
+                <div className="instagram-content">
+                  <div className="result-emoji">{fortune.emoji}</div>
+                  <div className="result-title">{fortune.title}</div>
+                  <div className="result-desc">{fortune.desc}</div>
+
+                  <div className="instagram-grid">
+                    <div className="grid-item">
+                      <h4>행운의 아이템</h4>
+                      <div className="traits">
+                        {fortune.lucky.map((item, index) => (
+                          <span key={index} className="trait-tag">🍀 {item}</span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="grid-item">
+                      <h4>조언</h4>
+                      <div className="result-desc">{fortune.advice.join(', ')}</div>
+                    </div>
+
+                    <div className="grid-item">
+                      <h4>운이 좋은 시간</h4>
+                      <div className="result-desc">⏰ {fortune.timing.join(', ')}</div>
+                    </div>
                   </div>
                 </div>
 
                 <div className="instagram-footer">
                   <div className="hashtags">
-                    #운세 #별자리 #탄생수 #오늘의운세 #운세보기
+                    #운세 #오늘의운세 #운세보기 #심리테스트
                   </div>
+                  <button className="retry-button" onClick={handleGetFortune}>
+                    다시 보기
+                  </button>
                 </div>
               </div>
-            </div>
-
-            <button onClick={() => setShowFortune(false)} className="retry-button">
-              다시 보기
-            </button>
+            )}
           </div>
         )}
       </div>

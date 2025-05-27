@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import './App.css'
 
 const tarotCards = [
   {
@@ -79,6 +80,7 @@ export default function TarotPage() {
   const [showResults, setShowResults] = useState(false)
   const [isDrawing, setIsDrawing] = useState(false)
   const navigate = useNavigate()
+  const [showCopied, setShowCopied] = useState(false)
 
   const shuffleCards = () => {
     const shuffled = [...tarotCards]
@@ -116,6 +118,15 @@ export default function TarotPage() {
   const handleReset = () => {
     setSelectedCards([])
     setShowResults(false)
+  }
+
+  const handleShare = () => {
+    if (selectedCards.length !== 2) return;
+    
+    const shareText = `✨ 타로 카드 결과 ✨\n\n현재: ${selectedCards[0].name}\n${selectedCards[0].meaning}\n\n미래: ${selectedCards[1].name}\n${selectedCards[1].meaning}\n\n#타로 #타로카드 #운세 #점`;
+    navigator.clipboard.writeText(shareText);
+    setShowCopied(true);
+    setTimeout(() => setShowCopied(false), 2000);
   }
 
   const renderCardBack = (index) => {
@@ -224,12 +235,8 @@ export default function TarotPage() {
                     <div className="location">현재와 미래의 통찰</div>
                   </div>
                 </div>
-                <button className="share-button" onClick={() => {
-                  const text = `타로 카드 결과\n\n현재: ${selectedCards[0].name}\n${selectedCards[0].meaning}\n\n미래: ${selectedCards[1].name}\n${selectedCards[1].meaning}\n\n#타로 #타로카드 #운세 #점`
-                  navigator.clipboard.writeText(text)
-                  alert('결과가 클립보드에 복사되었습니다!')
-                }}>
-                  공유하기
+                <button className="share-button" onClick={handleShare}>
+                  {showCopied ? '복사됨!' : '공유하기'}
                 </button>
               </div>
 
