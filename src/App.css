@@ -13,7 +13,7 @@ body {
 .main-container {
   max-width: 100%;
   margin: 0;
-  padding: 24px 12px;
+  padding: 0;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 0;
   box-shadow: none;
@@ -23,10 +23,10 @@ body {
 }
 
 .hero-section {
-  margin-bottom: 32px;
-  padding: 24px;
+  margin: 0;
+  padding: 24px 12px;
   background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
-  border-radius: 20px;
+  border-radius: 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
@@ -48,12 +48,10 @@ h1 {
 }
 
 .stats {
-  display: flex;
-  justify-content: space-around;
-  margin: 24px 0;
-  padding: 20px;
+  margin: 0;
+  padding: 20px 12px;
   background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
-  border-radius: 16px;
+  border-radius: 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
@@ -85,12 +83,10 @@ h1 {
 }
 
 .features {
-  display: flex;
-  justify-content: space-around;
-  margin: 24px 0;
-  padding: 20px;
+  margin: 0;
+  padding: 20px 12px;
   background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
-  border-radius: 16px;
+  border-radius: 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
@@ -122,10 +118,11 @@ h1 {
 }
 
 .menu-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin: 24px 0;
+  margin: 0;
+  padding: 20px 12px;
+  background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
+  border-radius: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .start-button button {
@@ -173,17 +170,19 @@ h1 {
 }
 
 .ad-banner {
-  margin: 32px 0;
-  padding: 20px;
+  margin: 0;
+  padding: 20px 12px;
   background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
-  border-radius: 16px;
+  border-radius: 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .footer {
-  margin-top: 32px;
-  padding-top: 24px;
-  border-top: 1px solid #e2e8f0;
+  margin: 0;
+  padding: 20px 12px;
+  background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
+  border-radius: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .footer p {
@@ -437,15 +436,23 @@ h1 {
 @media (max-width: 480px) {
   .main-container {
     margin: 0;
-    padding: 16px 12px;
+    padding: 0;
     border-radius: 0;
     min-height: 100vh;
     width: 100%;
   }
   
+  .hero-section,
+  .stats,
+  .features,
+  .menu-buttons,
+  .ad-banner,
+  .footer {
+    padding: 16px 12px;
+  }
+  
   .hero-section {
     margin-bottom: 20px;
-    padding: 16px;
   }
   
   .subtitle {
@@ -456,8 +463,6 @@ h1 {
   .stats {
     flex-direction: column;
     gap: 12px;
-    margin: 16px 0;
-    padding: 12px;
   }
   
   .stat-item {
@@ -476,8 +481,6 @@ h1 {
   .features {
     flex-direction: column;
     gap: 12px;
-    margin: 16px 0;
-    padding: 12px;
   }
   
   .feature-item {
@@ -495,7 +498,6 @@ h1 {
   
   .menu-buttons {
     gap: 12px;
-    margin: 16px 0;
   }
   
   .menu-buttons button {
@@ -506,24 +508,6 @@ h1 {
   .start-button button {
     font-size: 1.1rem;
     padding: 14px;
-  }
-  
-  .ad-banner {
-    margin: 20px 0;
-    padding: 12px;
-  }
-  
-  .footer {
-    margin-top: 20px;
-    padding-top: 16px;
-  }
-  
-  .footer p {
-    font-size: 0.9rem;
-  }
-  
-  h1 {
-    font-size: 1.5rem;
   }
   
   .test-header h2 {
