@@ -161,39 +161,41 @@ function ResultPage() {
         <h2 className="result-type">{result.type}</h2>
         <p className="result-description">{result.description}</p>
 
-        <div className="result-section">
-          <h3>특징</h3>
-          <div className="traits-container">
-            {result.traits.map((trait, index) => (
-              <span key={index} className="trait-tag">{trait}</span>
-            ))}
+        <div className="result-sections">
+          <div className="result-section">
+            <h3>특징</h3>
+            <div className="traits-container">
+              {result.traits.map((trait, index) => (
+                <span key={index} className="trait-tag">{trait}</span>
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div className="result-section">
-          <h3>강점</h3>
-          <ul className="result-list">
-            {result.strengths.map((strength, index) => (
-              <li key={index}>{strength}</li>
-            ))}
-          </ul>
-        </div>
+          <div className="result-section">
+            <h3>강점</h3>
+            <ul className="result-list">
+              {result.strengths.map((strength, index) => (
+                <li key={index}>{strength}</li>
+              ))}
+            </ul>
+          </div>
 
-        <div className="result-section">
-          <h3>약점</h3>
-          <ul className="result-list">
-            {result.weaknesses.map((weakness, index) => (
-              <li key={index}>{weakness}</li>
-            ))}
-          </ul>
-        </div>
+          <div className="result-section">
+            <h3>약점</h3>
+            <ul className="result-list">
+              {result.weaknesses.map((weakness, index) => (
+                <li key={index}>{weakness}</li>
+              ))}
+            </ul>
+          </div>
 
-        <div className="result-section">
-          <h3>추천 직업</h3>
-          <div className="careers-container">
-            {result.careers.map((career, index) => (
-              <span key={index} className="career-tag">{career}</span>
-            ))}
+          <div className="result-section">
+            <h3>추천 직업</h3>
+            <div className="careers-container">
+              {result.careers.map((career, index) => (
+                <span key={index} className="career-tag">{career}</span>
+              ))}
+            </div>
           </div>
         </div>
 

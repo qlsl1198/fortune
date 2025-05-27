@@ -417,8 +417,17 @@ body {
   text-align: center;
 }
 
-.result-section {
+.result-sections {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
   margin-bottom: 30px;
+}
+
+.result-section {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
 }
 
 .result-section h3 {
@@ -528,8 +537,13 @@ body {
     margin-bottom: 20px;
   }
 
+  .result-sections {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
   .result-section {
-    margin-bottom: 20px;
+    padding: 15px;
   }
 
   .result-section h3 {
