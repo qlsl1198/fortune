@@ -96,11 +96,9 @@ export default function TarotPage() {
     setSelectedCards([])
     setShowResults(false)
     
-    // 카드를 섞고 2장을 뽑습니다
     const shuffledCards = shuffleCards()
     const drawnCards = shuffledCards.slice(0, 2)
     
-    // 카드를 하나씩 순차적으로 보여주는 효과
     let currentIndex = 0
     
     const drawInterval = setInterval(() => {
@@ -129,190 +127,111 @@ export default function TarotPage() {
     setTimeout(() => setShowCopied(false), 2000);
   }
 
-  const renderCardBack = (index) => {
-    const card = selectedCards[index]
-    return (
-      <>
-        <div className="card-back">
-          {card ? card.name : '?'}
-        </div>
-        {card && (
-          <div className="card-front">
-            <div className="card-content">
-              <div className="card-name">{card.name}</div>
-              <div className="card-meaning">{card.meaning}</div>
-            </div>
-          </div>
-        )}
-      </>
-    )
-  }
-
-  const renderCardResult = (card, index) => {
-    if (!card) return null
-
-    const timeLabels = ['현재', '미래']
-    
-    return (
-      <div key={`result-${index}`} className="card-result">
-        <h4>{timeLabels[index]}: {card.name}</h4>
-        <p className="meaning">{card.meaning}</p>
-        
-        <div className="result-section">
-          <h5>조언</h5>
-          <ul>
-            {card.advice.map((item, i) => (
-              <li key={`advice-${i}`}>{item}</li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="result-section">
-          <h5>시기</h5>
-          <ul>
-            {card.timing.map((item, i) => (
-              <li key={`timing-${i}`}>{item}</li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="result-section">
-          <h5>영역별 의미</h5>
-          <ul>
-            {card.areas.map((item, i) => (
-              <li key={`area-${i}`}>{item}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    )
-  }
-
   return (
-    <div className="main-container">
-      <div className="tarot-header">
-        <button onClick={() => navigate('/')} className="back-button">
-          ← 메인으로
+    <div className="test-container">
+      <div className="test-header">
+        <h1 className="test-title">타로 카드</h1>
+        <button 
+          className="home-button"
+          onClick={() => navigate('/')}
+        >
+          메인으로
         </button>
-        <h2>타로 카드 뽑기</h2>
       </div>
 
-      <div className="tarot-intro">
-        <p>✨ 2장의 카드를 무작위로 뽑아 당신의 운세를 확인하세요.</p>
-        <p>✨ 카드는 순서대로 현재와 미래를 나타냅니다.</p>
-        <p>✨ 각 카드의 의미와 조언을 통해 인사이트를 얻으세요.</p>
-      </div>
+      {!showResults ? (
+        <div className="question-container">
+          <h2 className="question-number">
+            카드 뽑기
+          </h2>
+          <p className="question-text">
+            2장의 카드를 무작위로 뽑아 당신의 운세를 확인하세요.
+            카드는 순서대로 현재와 미래를 나타냅니다.
+          </p>
 
-      <div className="tarot-container">
-        {!showResults ? (
-          <div className="draw-section">
-            <div className="card-selection">
-              {[0, 1].map((index) => (
-                <div 
-                  key={`card-${index}`} 
-                  className={`tarot-card ${index < selectedCards.length ? 'selected' : ''}`}
-                >
-                  {renderCardBack(index)}
-                </div>
-              ))}
-            </div>
-            <button
-              onClick={handleDraw}
-              disabled={isDrawing}
-              className="draw-button"
-            >
-              {isDrawing ? '카드를 뽑는 중...' : '카드 뽑기'}
-            </button>
-          </div>
-        ) : (
-          <div className="instagram-result-container">
-            <div className="instagram-card">
-              <div className="instagram-header">
-                <div className="profile-section">
-                  <div className="profile-pic">🎴</div>
-                  <div className="profile-info">
-                    <div className="username">타로 카드</div>
-                    <div className="location">현재와 미래의 통찰</div>
+          <div className="card-selection">
+            {[0, 1].map((index) => (
+              <div 
+                key={`card-${index}`} 
+                className={`tarot-card ${index < selectedCards.length ? 'selected' : ''}`}
+              >
+                <div className="card-back">
+                  <div className="card-content">
+                    <span>?</span>
                   </div>
                 </div>
-                <button className="share-button" onClick={handleShare}>
-                  {showCopied ? '복사됨!' : '공유하기'}
-                </button>
-              </div>
-
-              <div className="instagram-content">
-                <div className="card-selection">
-                  {selectedCards.map((card, index) => (
-                    <div key={`card-${index}`} className="tarot-card selected">
-                      <div className="card-front">
-                        <div className="card-content">
-                          <div className="card-name">{card.name}</div>
-                          <div className="card-meaning">{card.meaning}</div>
-                        </div>
-                      </div>
+                {selectedCards[index] && (
+                  <div className="card-front">
+                    <div className="card-content">
+                      <div className="card-name">{selectedCards[index].name}</div>
+                      <div className="card-meaning">{selectedCards[index].meaning}</div>
                     </div>
-                  ))}
-                </div>
-
-                <div className="instagram-grid">
-                  {selectedCards.map((card, index) => (
-                    <div key={`result-${index}`} className="grid-item">
-                      <h4>{index === 0 ? '현재' : '미래'}: {card.name}</h4>
-                      
-                      <div className="result-section">
-                        <h5>조언</h5>
-                        <ul className="instagram-list">
-                          {card.advice.map((item, i) => (
-                            <li key={`advice-${i}`}>✨ {item}</li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div className="result-section">
-                        <h5>시기</h5>
-                        <ul className="instagram-list">
-                          {card.timing.map((item, i) => (
-                            <li key={`timing-${i}`}>⏳ {item}</li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div className="result-section">
-                        <h5>영역별 의미</h5>
-                        <ul className="instagram-list">
-                          {card.areas.map((item, i) => (
-                            <li key={`area-${i}`}>🎯 {item}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="instagram-footer">
-                  <div className="hashtags">
-                    #타로 #타로카드 #운세 #점 #현재와미래
                   </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <button
+            onClick={handleDraw}
+            disabled={isDrawing}
+            className={`draw-button ${isDrawing ? 'disabled' : ''}`}
+          >
+            {isDrawing ? '카드를 뽑는 중...' : '카드 뽑기'}
+          </button>
+        </div>
+      ) : (
+        <div className="question-container">
+          <h2 className="question-number">
+            타로 결과
+          </h2>
+
+          <div className="card-result">
+            {selectedCards.map((card, index) => (
+              <div key={`result-${index}`} className="result-section">
+                <h4>{index === 0 ? '현재' : '미래'}: {card.name}</h4>
+                <p className="meaning">{card.meaning}</p>
+                
+                <div className="result-details">
+                  <h5>조언</h5>
+                  <ul>
+                    {card.advice.map((item, i) => (
+                      <li key={`advice-${i}`}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="result-details">
+                  <h5>시기</h5>
+                  <ul>
+                    {card.timing.map((item, i) => (
+                      <li key={`timing-${i}`}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="result-details">
+                  <h5>영역별 의미</h5>
+                  <ul>
+                    {card.areas.map((item, i) => (
+                      <li key={`area-${i}`}>{item}</li>
+                    ))}
+                  </ul>
                 </div>
               </div>
-            </div>
+            ))}
+          </div>
 
-            <button onClick={handleReset} className="retry-button">
-              다시 뽑기
+          <div className="result-actions">
+            <button className="share-button" onClick={handleShare}>
+              {showCopied ? '복사됨!' : '결과 공유하기'}
+            </button>
+            <button className="retry-button" onClick={handleReset}>
+              다시하기
             </button>
           </div>
-        )}
-      </div>
-
-      <div className="ad-banner">
-        <ins 
-          className="kakao_ad_area" 
-          style={{ display: 'block', width: '100%', textAlign: 'center' }}
-          data-ad-unit="DAN-H8ERcNgrJCMrs1Ub"
-          data-ad-width="320"
-          data-ad-height="100"
-        />
-      </div>
+        </div>
+      )}
     </div>
   )
 } 
