@@ -163,7 +163,7 @@ export default function TestPage() {
     <div className="main-container">
       <div className="test-header">
         <button onClick={handleBack} className="back-button">
-          ← 뒤로가기
+          ← 메인으로
         </button>
         <h2>성격 유형 테스트</h2>
         <div className="progress-info">
