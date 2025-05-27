@@ -149,7 +149,7 @@ function ResultPage() {
         <ins 
           className="kakao_ad_area" 
           style={{ display: 'block', width: '100%', textAlign: 'center' }}
-          data-ad-unit="DAN-result-page-token"
+          data-ad-unit="DAN-rz0SXdqQnXMRUyny"
           data-ad-width="320"
           data-ad-height="100"
         />
