@@ -364,11 +364,26 @@ function TestPage() {
 
   return (
     <div className="test-container">
-      <div className="progress-bar">
-        <div 
-          className="progress-fill"
-          style={{ width: `${progress}%` }}
-        />
+      <div className="test-header">
+        <h1 className="test-title">성격 유형 테스트</h1>
+        <button 
+          className="home-button"
+          onClick={() => navigate('/')}
+        >
+          메인으로
+        </button>
+      </div>
+
+      <div className="progress-container">
+        <div className="progress-text">
+          {currentQuestion + 1} / {questions.length}
+        </div>
+        <div className="progress-bar">
+          <div 
+            className="progress-fill"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
       </div>
 
       <div className="question-container">
