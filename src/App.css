@@ -579,27 +579,23 @@ body {
 .birth-input {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin: 24px 0;
-  padding: 24px;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  gap: 1rem;
+  margin: 2rem 0;
 }
 
 .birth-input input {
   width: 100%;
-  padding: 16px;
+  padding: 1rem;
   font-size: 1.1rem;
-  border: 2px solid #e2e8f0;
-  border-radius: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
   transition: all 0.3s ease;
 }
 
 .birth-input input:focus {
   outline: none;
   border-color: #4299e1;
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
 }
 
 .fortune-button {
@@ -630,182 +626,122 @@ body {
 }
 
 .fortune-section {
-  margin: 24px 0;
-  padding: 24px;
+  margin: 2rem 0;
+  padding: 1.5rem;
   background: white;
-  border-radius: 16px;
-  text-align: left;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease;
-}
-
-.fortune-section:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .fortune-section h3 {
-  color: #2d3748;
-  font-size: 1.4rem;
-  margin-bottom: 16px;
-  padding-bottom: 12px;
-  border-bottom: 2px solid #e2e8f0;
-}
-
-.fortune-section p {
-  color: #4a5568;
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 16px;
+  color: #333;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e0e0e0;
 }
 
 .lucky-items {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 16px;
+  gap: 0.5rem;
 }
 
 .lucky-item {
-  padding: 12px 20px;
-  background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+  padding: 0.5rem 1rem;
+  background: #f0f0f0;
   border-radius: 20px;
-  font-size: 1.1rem;
-  color: #2b6cb0;
-  margin: 4px;
-  display: inline-block;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(66, 153, 225, 0.1);
+  font-size: 0.9rem;
+  color: #333;
 }
 
-.lucky-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(66, 153, 225, 0.2);
+.fortune-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.grid-item {
+  padding: 1rem;
+  background: #f8f8f8;
+  border-radius: 8px;
+}
+
+.grid-item h4 {
+  color: #333;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.grid-item p {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.fortune-advice, .fortune-warning {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border-radius: 12px;
 }
 
 .fortune-advice {
-  margin: 24px 0;
-  padding: 24px;
   background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
-  border-radius: 16px;
-  text-align: left;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
-.fortune-advice h4 {
-  color: #2f855a;
-  font-size: 1.3rem;
-  margin-bottom: 16px;
+.fortune-warning {
+  background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
 }
 
-.fortune-advice ul {
+.fortune-advice h4, .fortune-warning h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.fortune-advice ul, .fortune-warning ul {
   list-style: none;
   padding: 0;
 }
 
-.fortune-advice li {
-  margin: 12px 0;
-  color: #2f855a;
-  padding-left: 24px;
+.fortune-advice li, .fortune-warning li {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
   position: relative;
-  line-height: 1.6;
-  font-size: 1.1rem;
+  line-height: 1.4;
 }
 
 .fortune-advice li:before {
   content: "✨";
   position: absolute;
   left: 0;
-  color: #48bb78;
-}
-
-.fortune-warning {
-  margin: 24px 0;
-  padding: 24px;
-  background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
-  border-radius: 16px;
-  text-align: left;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.fortune-warning h4 {
-  color: #c53030;
-  font-size: 1.3rem;
-  margin-bottom: 16px;
-}
-
-.fortune-warning ul {
-  list-style: none;
-  padding: 0;
-}
-
-.fortune-warning li {
-  margin: 12px 0;
-  color: #c53030;
-  padding-left: 24px;
-  position: relative;
-  line-height: 1.6;
-  font-size: 1.1rem;
 }
 
 .fortune-warning li:before {
   content: "⚠️";
   position: absolute;
   left: 0;
-  color: #e53e3e;
 }
 
-.fortune-summary {
-  margin: 32px 0;
-  padding: 24px;
-  background: linear-gradient(135deg, #faf5ff 0%, #e9d8fd 100%);
-  border-radius: 16px;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.fortune-summary h3 {
-  color: #6b46c1;
-  font-size: 1.4rem;
-  margin-bottom: 16px;
-}
-
-.fortune-summary p {
-  color: #6b46c1;
-  font-size: 1.2rem;
-  line-height: 1.8;
-  margin-bottom: 16px;
-}
-
-@media (max-width: 480px) {
-  .fortune-container {
-    padding: 16px;
+@media (max-width: 768px) {
+  .tarot-card {
+    width: 140px;
+    height: 210px;
   }
-  
-  .fortune-section,
-  .fortune-advice,
-  .fortune-warning,
-  .fortune-summary {
-    padding: 16px;
+
+  .card-name {
+    font-size: 1.3rem;
   }
-  
+
+  .card-meaning {
+    font-size: 0.9rem;
+  }
+
+  .fortune-grid {
+    grid-template-columns: 1fr;
+  }
+
   .lucky-item {
-    padding: 8px 16px;
-    font-size: 1rem;
-  }
-  
-  .fortune-section h3,
-  .fortune-advice h4,
-  .fortune-warning h4,
-  .fortune-summary h3 {
-    font-size: 1.2rem;
-  }
-  
-  .fortune-section p,
-  .fortune-advice li,
-  .fortune-warning li,
-  .fortune-summary p {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -871,10 +807,9 @@ body {
 .card-selection {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 1rem;
   justify-content: center;
-  margin: 32px 0;
-  min-height: 240px;
+  margin: 2rem 0;
 }
 
 .tarot-card {
@@ -902,27 +837,26 @@ body {
   top: 0;
   left: 0;
   backface-visibility: hidden;
-  border-radius: 20px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  border: 3px solid gold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e0e0e0;
   transition: all 0.3s ease;
 }
 
 .card-back {
-  background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%);
-  color: #fff;
-  font-size: 1.8em;
+  background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+  color: white;
   transform: rotateY(0deg);
 }
 
 .card-front {
-  background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
-  color: #fff;
+  background: white;
+  color: #333;
   transform: rotateY(180deg);
-  padding: 24px;
+  padding: 1rem;
   text-align: center;
 }
 
@@ -933,46 +867,41 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transform: rotateY(0deg);
 }
 
 .card-name {
-  font-size: 1.8em;
-  margin-bottom: 16px;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
   font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .card-meaning {
-  font-size: 1em;
-  line-height: 1.6;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  font-size: 1rem;
+  line-height: 1.4;
 }
 
 .draw-button {
+  width: 100%;
+  padding: 1rem;
   background: linear-gradient(45deg, #4299e1, #667eea);
   color: white;
-  padding: 16px 32px;
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
+  font-size: 1.1rem;
   cursor: pointer;
-  transition: all 0.3s;
-  margin-top: 24px;
-  font-size: 1.2rem;
-  font-weight: bold;
+  transition: all 0.3s ease;
+  margin-top: 2rem;
+}
+
+.draw-button:hover:not(.disabled) {
+  transform: translateY(-2px);
   box-shadow: 0 4px 6px rgba(66, 153, 225, 0.2);
 }
 
-.draw-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(66, 153, 225, 0.3);
-}
-
-.draw-button:disabled {
-  background: #cbd5e0;
+.draw-button.disabled {
+  background: #e0e0e0;
   cursor: not-allowed;
   transform: none;
-  box-shadow: none;
 }
 
 .card-result {
@@ -1068,11 +997,11 @@ body {
   }
   
   .card-name {
-    font-size: 1.4em;
+    font-size: 1.3rem;
   }
   
   .card-meaning {
-    font-size: 0.9em;
+    font-size: 0.9rem;
   }
   
   .card-selection {
