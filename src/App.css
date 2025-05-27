@@ -77,6 +77,7 @@ h1 {
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
 .stat-item:hover {
@@ -120,6 +121,7 @@ h1 {
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
 .feature-item:hover {
@@ -474,17 +476,17 @@ h1 {
   }
   
   .stats {
-    flex-direction: column;
-    gap: 12px;
-    margin: 16px 0;
-    padding: 12px;
+    padding: 0.5rem;
+    margin: 1rem 0;
+    justify-content: flex-start;
+    gap: 0.5rem;
   }
   
   .features {
-    flex-direction: column;
-    gap: 12px;
-    margin: 16px 0;
-    padding: 12px;
+    padding: 0.5rem;
+    margin: 1rem 0;
+    justify-content: flex-start;
+    gap: 0.5rem;
   }
   
   .menu-buttons {
@@ -526,6 +528,25 @@ h1 {
   
   .test-description h3 {
     font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .stats, .features {
+    padding: 0.3rem;
+  }
+  
+  .stat-item, .feature-item {
+    min-width: 60px;
+    padding: 0.2rem;
+  }
+  
+  .stat-number, .feature-icon {
+    font-size: 1.3rem;
+  }
+  
+  .stat-label, .feature-text {
+    font-size: 0.7rem;
   }
 }
 
