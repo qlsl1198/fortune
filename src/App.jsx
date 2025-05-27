@@ -15,16 +15,16 @@ function Home() {
 
       <div className="stats">
         <div className="stat-item">
-          <div className="stat-number">10만+</div>
-          <div className="stat-label">참여자</div>
+          <div className="stat-number">🎯</div>
+          <div className="stat-label">성격 분석</div>
         </div>
         <div className="stat-item">
-          <div className="stat-number">98%</div>
-          <div className="stat-label">정확도</div>
+          <div className="stat-number">✨</div>
+          <div className="stat-label">운세 보기</div>
         </div>
         <div className="stat-item">
-          <div className="stat-number">7</div>
-          <div className="stat-label">질문</div>
+          <div className="stat-number">🎴</div>
+          <div className="stat-label">타로 점</div>
         </div>
       </div>
 
