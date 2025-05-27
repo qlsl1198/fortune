@@ -4,8 +4,21 @@ import TestPage from './TestPage'
 import ResultPage from './ResultPage'
 import FortunePage from './FortunePage'
 import TarotPage from './TarotPage'
+import { useEffect } from 'react'
 
 function Home() {
+  useEffect(() => {
+    // 카카오 애드핏 스크립트 로드
+    const script = document.createElement('script')
+    script.src = '//t1.daumcdn.net/kas/static/ba.min.js'
+    script.async = true
+    document.body.appendChild(script)
+
+    return () => {
+      document.body.removeChild(script)
+    }
+  }, [])
+
   return (
     <div className="main-container">
       <div className="hero-section">
@@ -56,9 +69,12 @@ function Home() {
       </div>
 
       <div className="ad-banner">
-        <div style={{background:'#eee', padding:'16px', textAlign:'center', borderRadius:'8px'}}>
-          광고 배너 자리
-        </div>
+        <ins className="kakao_ad_area" 
+          style={{ display: 'none' }}
+          data-ad-unit="DAN-rz0SXdqQnXMRUyny"
+          data-ad-width="320"
+          data-ad-height="100"
+        />
       </div>
 
       <div className="footer">
