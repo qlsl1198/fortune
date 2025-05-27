@@ -121,35 +121,65 @@ export default function FortunePage() {
             </button>
           </form>
         ) : (
-          <div className="fortune-result">
-            <h3 className="result-title">{getFortune().title}</h3>
-            <p className="result-desc">{getFortune().desc}</p>
-
-            <div className="result-section">
-              <h4>오늘의 행운 아이템</h4>
-              <div className="lucky-items">
-                {getFortune().lucky.map((item, index) => (
-                  <div key={index} className="lucky-item">{item}</div>
-                ))}
+          <div className="instagram-result-container">
+            <div className="instagram-card">
+              <div className="instagram-header">
+                <div className="profile-section">
+                  <div className="profile-pic">🔮</div>
+                  <div className="profile-info">
+                    <div className="username">오늘의 운세</div>
+                    <div className="location">별자리 & 탄생수 기반</div>
+                  </div>
+                </div>
+                <button className="share-button" onClick={() => {
+                  const text = `오늘의 운세: ${getFortune().title}\n\n${getFortune().desc}\n\n#운세 #별자리 #탄생수 #오늘의운세`
+                  navigator.clipboard.writeText(text)
+                  alert('결과가 클립보드에 복사되었습니다!')
+                }}>
+                  공유하기
+                </button>
               </div>
-            </div>
 
-            <div className="result-section">
-              <h4>오늘의 조언</h4>
-              <ul>
-                {getFortune().advice.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </div>
+              <div className="instagram-content">
+                <div className="result-emoji">✨</div>
+                <h3 className="result-title">{getFortune().title}</h3>
+                <p className="result-desc">{getFortune().desc}</p>
 
-            <div className="result-section">
-              <h4>시간대별 운세</h4>
-              <ul>
-                {getFortune().timing.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
+                <div className="instagram-grid">
+                  <div className="grid-item">
+                    <h4>행운 아이템</h4>
+                    <div className="lucky-items">
+                      {getFortune().lucky.map((item, index) => (
+                        <div key={index} className="lucky-item">🍀 {item}</div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="grid-item">
+                    <h4>오늘의 조언</h4>
+                    <ul className="instagram-list">
+                      {getFortune().advice.map((item, index) => (
+                        <li key={index}>💫 {item}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="grid-item">
+                    <h4>시간대별 운세</h4>
+                    <ul className="instagram-list">
+                      {getFortune().timing.map((item, index) => (
+                        <li key={index}>⏰ {item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="instagram-footer">
+                  <div className="hashtags">
+                    #운세 #별자리 #탄생수 #오늘의운세 #운세보기
+                  </div>
+                </div>
+              </div>
             </div>
 
             <button onClick={() => setShowFortune(false)} className="retry-button">

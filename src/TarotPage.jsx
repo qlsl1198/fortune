@@ -214,8 +214,82 @@ export default function TarotPage() {
             </button>
           </div>
         ) : (
-          <div className="result-container">
-            {selectedCards.map((card, index) => renderCardResult(card, index))}
+          <div className="instagram-result-container">
+            <div className="instagram-card">
+              <div className="instagram-header">
+                <div className="profile-section">
+                  <div className="profile-pic">🎴</div>
+                  <div className="profile-info">
+                    <div className="username">타로 카드</div>
+                    <div className="location">현재와 미래의 통찰</div>
+                  </div>
+                </div>
+                <button className="share-button" onClick={() => {
+                  const text = `타로 카드 결과\n\n현재: ${selectedCards[0].name}\n${selectedCards[0].meaning}\n\n미래: ${selectedCards[1].name}\n${selectedCards[1].meaning}\n\n#타로 #타로카드 #운세 #점`
+                  navigator.clipboard.writeText(text)
+                  alert('결과가 클립보드에 복사되었습니다!')
+                }}>
+                  공유하기
+                </button>
+              </div>
+
+              <div className="instagram-content">
+                <div className="card-selection">
+                  {selectedCards.map((card, index) => (
+                    <div key={`card-${index}`} className="tarot-card selected">
+                      <div className="card-front">
+                        <div className="card-content">
+                          <div className="card-name">{card.name}</div>
+                          <div className="card-meaning">{card.meaning}</div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="instagram-grid">
+                  {selectedCards.map((card, index) => (
+                    <div key={`result-${index}`} className="grid-item">
+                      <h4>{index === 0 ? '현재' : '미래'}: {card.name}</h4>
+                      
+                      <div className="result-section">
+                        <h5>조언</h5>
+                        <ul className="instagram-list">
+                          {card.advice.map((item, i) => (
+                            <li key={`advice-${i}`}>✨ {item}</li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div className="result-section">
+                        <h5>시기</h5>
+                        <ul className="instagram-list">
+                          {card.timing.map((item, i) => (
+                            <li key={`timing-${i}`}>⏳ {item}</li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div className="result-section">
+                        <h5>영역별 의미</h5>
+                        <ul className="instagram-list">
+                          {card.areas.map((item, i) => (
+                            <li key={`area-${i}`}>🎯 {item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="instagram-footer">
+                  <div className="hashtags">
+                    #타로 #타로카드 #운세 #점 #현재와미래
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <button onClick={handleReset} className="retry-button">
               다시 뽑기
             </button>
