@@ -137,6 +137,7 @@ function ResultPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const result = location.state?.result;
+  const [showCopied, setShowCopied] = useState(false);
 
   if (!result) {
     return (
@@ -147,77 +148,83 @@ function ResultPage() {
     );
   }
 
-  const handleShare = async () => {
-    const shareText = `나의 성격 유형은 ${result.type}입니다!\n\n${result.description}\n\n특징: ${result.traits.join(', ')}\n\n강점: ${result.strengths.join(', ')}\n\n약점: ${result.weaknesses.join(', ')}\n\n추천 직업: ${result.careers.join(', ')}`
-
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: '나의 성격 유형 테스트 결과',
-          text: shareText
-        })
-      } catch (error) {
-        console.error('공유하기 실패:', error)
-      }
-    } else {
-      try {
-        await navigator.clipboard.writeText(shareText)
-        alert('결과가 클립보드에 복사되었습니다!')
-      } catch (error) {
-        console.error('복사하기 실패:', error)
-      }
-    }
+  const handleShare = () => {
+    const shareText = `✨ 성격 유형 테스트 결과 ✨\n\n${result.type}\n\n${result.description}\n\n특징\n${result.traits.join(', ')}\n\n강점\n${result.strengths.join(', ')}\n\n약점\n${result.weaknesses.join(', ')}\n\n추천 직업\n${result.careers.join(', ')}\n\n#성격유형 #심리테스트 #MBTI`;
+    navigator.clipboard.writeText(shareText);
+    setShowCopied(true);
+    setTimeout(() => setShowCopied(false), 2000);
   };
 
   return (
-    <div className="result-container">
-      <div className="result-card">
-        <h2 className="result-type">{result.type}</h2>
-        <p className="result-description">{result.description}</p>
+    <div className="test-container">
+      <div className="test-header">
+        <h1 className="test-title">테스트 결과</h1>
+        <button 
+          className="home-button"
+          onClick={() => navigate('/')}
+        >
+          메인으로
+        </button>
+      </div>
 
-        <div className="result-section">
-          <h3>특징</h3>
-          <div className="traits-container">
-            {result.traits.map((trait, index) => (
-              <span key={index} className="trait-tag">{trait}</span>
-            ))}
+      <div className="question-container">
+        <div className="result-content">
+          <h2 className="result-type">{result.type}</h2>
+          <p className="result-description">{result.description}</p>
+
+          <div className="result-grid">
+            <div className="result-section">
+              <h3>특징</h3>
+              <div className="traits-container">
+                {result.traits.map((trait, index) => (
+                  <span key={index} className="trait-tag">{trait}</span>
+                ))}
+              </div>
+            </div>
+
+            <div className="result-section">
+              <h3>강점</h3>
+              <ul className="result-list">
+                {result.strengths.map((strength, index) => (
+                  <li key={index}>{strength}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="result-section">
+              <h3>약점</h3>
+              <ul className="result-list">
+                {result.weaknesses.map((weakness, index) => (
+                  <li key={index}>{weakness}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="result-section">
+              <h3>추천 직업</h3>
+              <div className="careers-container">
+                {result.careers.map((career, index) => (
+                  <span key={index} className="career-tag">{career}</span>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div className="result-section">
-          <h3>강점</h3>
-          <ul className="result-list">
-            {result.strengths.map((strength, index) => (
-              <li key={index}>{strength}</li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="result-section">
-          <h3>약점</h3>
-          <ul className="result-list">
-            {result.weaknesses.map((weakness, index) => (
-              <li key={index}>{weakness}</li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="result-section">
-          <h3>추천 직업</h3>
-          <div className="careers-container">
-            {result.careers.map((career, index) => (
-              <span key={index} className="career-tag">{career}</span>
-            ))}
+          <div className="result-actions">
+            <button 
+              className="share-button" 
+              onClick={handleShare}
+              disabled={!result}
+            >
+              {showCopied ? '복사됨!' : '결과 공유하기'}
+            </button>
+            <button 
+              className="retry-button" 
+              onClick={() => navigate('/test')}
+            >
+              다시하기
+            </button>
           </div>
-        </div>
-
-        <div className="result-actions">
-          <button onClick={handleShare} className="share-button">
-            결과 공유하기
-          </button>
-          <button onClick={() => navigate('/')} className="retry-button">
-            테스트 다시하기
-          </button>
         </div>
       </div>
     </div>
