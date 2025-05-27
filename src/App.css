@@ -13,7 +13,7 @@ body {
 .main-container {
   max-width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 24px 12px;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 0;
   box-shadow: none;
@@ -23,7 +23,7 @@ body {
 }
 
 .hero-section {
-  margin: 0;
+  margin-bottom: 32px;
   padding: 24px;
   background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
   border-radius: 20px;
@@ -50,7 +50,7 @@ h1 {
 .stats {
   display: flex;
   justify-content: space-around;
-  margin: 0;
+  margin: 24px 0;
   padding: 20px;
   background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
   border-radius: 16px;
@@ -87,7 +87,7 @@ h1 {
 .features {
   display: flex;
   justify-content: space-around;
-  margin: 0;
+  margin: 24px 0;
   padding: 20px;
   background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
   border-radius: 16px;
@@ -125,11 +125,7 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin: 0;
-  padding: 20px;
-  background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
-  border-radius: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  margin: 24px 0;
 }
 
 .start-button button {
@@ -177,7 +173,7 @@ h1 {
 }
 
 .ad-banner {
-  margin: 0;
+  margin: 32px 0;
   padding: 20px;
   background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
   border-radius: 16px;
@@ -185,11 +181,9 @@ h1 {
 }
 
 .footer {
-  margin: 0;
-  padding: 20px;
-  background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
-  border-radius: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #e2e8f0;
 }
 
 .footer p {
@@ -443,70 +437,34 @@ h1 {
 @media (max-width: 480px) {
   .main-container {
     margin: 0;
-    padding: 0;
+    padding: 16px 12px;
     border-radius: 0;
     min-height: 100vh;
     width: 100%;
   }
   
-  .hero-section,
-  .stats,
-  .features,
-  .menu-buttons,
-  .ad-banner,
-  .footer {
-    margin: 16px 12px;
-    padding: 16px;
-    border-radius: 16px;
-  }
-  
   .hero-section {
     margin-bottom: 20px;
-  }
-  
-  .subtitle {
-    font-size: 1rem;
-    margin-bottom: 16px;
+    padding: 16px;
   }
   
   .stats {
     flex-direction: column;
     gap: 12px;
-  }
-  
-  .stat-item {
-    width: 100%;
-    padding: 8px;
-  }
-  
-  .stat-number {
-    font-size: 1.4rem;
-  }
-  
-  .stat-label {
-    font-size: 0.9rem;
+    margin: 16px 0;
+    padding: 12px;
   }
   
   .features {
     flex-direction: column;
     gap: 12px;
-  }
-  
-  .feature-item {
-    width: 100%;
+    margin: 16px 0;
     padding: 12px;
-  }
-  
-  .feature-icon {
-    font-size: 1.5rem;
-  }
-  
-  .feature-text {
-    font-size: 0.9rem;
   }
   
   .menu-buttons {
     gap: 12px;
+    margin: 16px 0;
   }
   
   .menu-buttons button {
@@ -519,22 +477,14 @@ h1 {
     padding: 14px;
   }
   
-  .test-header h2 {
-    font-size: 1.3rem;
+  .ad-banner {
+    margin: 20px 0;
+    padding: 12px;
   }
   
-  .test-container,
-  .result-container {
-    padding: 16px;
-  }
-  
-  .share-buttons {
-    flex-direction: column;
-  }
-  
-  .share-button,
-  .retry-button {
-    width: 100%;
+  .footer {
+    margin-top: 20px;
+    padding-top: 16px;
   }
   
   .footer p {
