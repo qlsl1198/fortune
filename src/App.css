@@ -435,8 +435,88 @@ h1 {
 @media (max-width: 480px) {
   .main-container {
     margin: 0;
+    padding: 16px 12px;
     border-radius: 0;
     min-height: 100vh;
+  }
+  
+  .hero-section {
+    margin-bottom: 20px;
+    padding: 16px;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 16px;
+  }
+  
+  .stats {
+    flex-direction: column;
+    gap: 12px;
+    margin: 16px 0;
+    padding: 12px;
+  }
+  
+  .stat-item {
+    width: 100%;
+    padding: 8px;
+  }
+  
+  .stat-number {
+    font-size: 1.4rem;
+  }
+  
+  .stat-label {
+    font-size: 0.9rem;
+  }
+  
+  .features {
+    flex-direction: column;
+    gap: 12px;
+    margin: 16px 0;
+    padding: 12px;
+  }
+  
+  .feature-item {
+    width: 100%;
+    padding: 12px;
+  }
+  
+  .feature-icon {
+    font-size: 1.5rem;
+  }
+  
+  .feature-text {
+    font-size: 0.9rem;
+  }
+  
+  .menu-buttons {
+    gap: 12px;
+    margin: 16px 0;
+  }
+  
+  .menu-buttons button {
+    font-size: 1rem;
+    padding: 14px;
+  }
+  
+  .start-button button {
+    font-size: 1.1rem;
+    padding: 14px;
+  }
+  
+  .ad-banner {
+    margin: 20px 0;
+    padding: 12px;
+  }
+  
+  .footer {
+    margin-top: 20px;
+    padding-top: 16px;
+  }
+  
+  .footer p {
+    font-size: 0.9rem;
   }
   
   h1 {
@@ -447,21 +527,9 @@ h1 {
     font-size: 1.3rem;
   }
   
-  .hero-section,
   .test-container,
   .result-container {
     padding: 16px;
-  }
-  
-  .stats,
-  .features {
-    flex-direction: column;
-    gap: 16px;
-  }
-  
-  .stat-item,
-  .feature-item {
-    width: 100%;
   }
   
   .share-buttons {
