@@ -95,15 +95,7 @@ function Home() {
         </Link>
       </div>
 
-      <div className="ad-banner">
-        <ins 
-          className="kakao_ad_area" 
-          style={{ display: 'block', width: '100%', textAlign: 'center' }}
-          data-ad-unit="DAN-j8hkWoleauwZehWh"
-          data-ad-width="320"
-          data-ad-height="100"
-        />
-      </div>
+      <KakaoAdfit adUnit="DAN-j8hkWoleauwZehWh" />
 
       <div className="footer">
         <p>이 테스트는 재미로 보는 심리테스트입니다.</p>
@@ -118,12 +110,7 @@ function App() {
     <Router>
       <div className="app">
         <Routes>
-          <Route path="/" element={
-            <>
-              <Home />
-              <KakaoAdfit adUnit="DAN-j8hkWoleauwZehWh" />
-            </>
-          } />
+          <Route path="/" element={<Home />} />
           <Route path="/test" element={
             <>
               <TestPage />
