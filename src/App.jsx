@@ -4,31 +4,46 @@ import TestPage from './TestPage'
 import ResultPage from './ResultPage'
 import FortunePage from './FortunePage'
 import TarotPage from './TarotPage'
-import { useEffect } from 'react'
-
-const loadKakaoAdFit = () => {
-  try {
-    const script = document.createElement('script');
-    script.src = '//t1.daumcdn.net/kas/static/ba.min.js';
-    script.async = true;
-    script.onerror = () => {
-      console.log('카카오 애드핏 로딩 실패');
-    };
-    document.body.appendChild(script);
-  } catch (error) {
-    console.log('카카오 애드핏 초기화 실패:', error);
-  }
-};
+import { useState, useEffect } from 'react'
 
 function Home() {
-  useEffect(() => {
-    // 페이지 로드 후 지연 로딩
-    const timer = setTimeout(() => {
-      loadKakaoAdFit();
-    }, 1000);
+  const [isAdLoaded, setIsAdLoaded] = useState(false)
 
-    return () => clearTimeout(timer);
-  }, []);
+  useEffect(() => {
+    const loadKakaoAdFit = () => {
+      try {
+        const script = document.createElement('script')
+        script.src = 'https://t1.daumcdn.net/kas/static/ads/custom_ads.js'
+        script.async = true
+        script.onload = () => {
+          setIsAdLoaded(true)
+          if (window.kakaoAdfit) {
+            window.kakaoAdfit.refresh()
+          }
+        }
+        script.onerror = () => {
+          console.error('광고 스크립트 로딩 실패')
+        }
+        document.head.appendChild(script)
+      } catch (error) {
+        console.error('광고 스크립트 로딩 중 에러:', error)
+      }
+    }
+
+    // 페이지 로드 후 약간의 지연을 두고 광고 스크립트 로드
+    const timer = setTimeout(() => {
+      loadKakaoAdFit()
+    }, 1000)
+
+    return () => {
+      clearTimeout(timer)
+      // 컴포넌트 언마운트 시 광고 스크립트 제거
+      const adScript = document.querySelector('script[src*="custom_ads.js"]')
+      if (adScript) {
+        adScript.remove()
+      }
+    }
+  }, [])
 
   return (
     <div className="main-container">
