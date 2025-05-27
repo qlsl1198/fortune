@@ -302,62 +302,93 @@ function TestPage() {
     // 가치관 성향 점수
     const valueScore = (counts.result + counts.quality) - (counts.process + counts.satisfaction)
 
-    // 성격 유형 판단
+    const results = []
+
+    // 활발한 리더형
     if (leadershipScore > 0 && activityScore > 0 && adventureScore > 0) {
-      return {
+      results.push({
         type: '활발한 리더형',
         description: '당신은 활발하고 도전적인 리더십을 가진 사람입니다. 새로운 상황에서도 주도적으로 행동하며, 팀을 이끄는 것을 즐깁니다.',
         traits: ['리더십', '활동성', '도전정신', '결단력'],
         strengths: ['팀 리더십', '의사결정 능력', '적응력', '에너지'],
         weaknesses: ['인내심 부족', '과도한 자신감', '타인 배려 부족'],
         careers: ['경영자', '프로젝트 매니저', '영업직', '창업가']
-      }
-    } else if (emotionalScore > 0 && relationshipScore < 0 && valueScore < 0) {
-      return {
+      })
+    }
+
+    // 감성적인 예술가형
+    if (emotionalScore > 0 && planningScore < 0 && valueScore < 0) {
+      results.push({
         type: '감성적인 예술가형',
         description: '당신은 감성적이고 창의적인 예술가적 성향을 가진 사람입니다. 타인의 감정에 공감하며, 아름다움과 의미를 추구합니다.',
         traits: ['감성적', '창의적', '공감능력', '예술적 감각'],
         strengths: ['창의력', '감성적 이해', '예술적 표현', '직관력'],
         weaknesses: ['감정 기복', '현실감 부족', '결정 장애'],
         careers: ['예술가', '디자이너', '상담사', '교육자']
-      }
-    } else if (emotionalScore < 0 && planningScore > 0 && valueScore > 0) {
-      return {
+      })
+    }
+
+    // 논리적인 분석가형
+    if (emotionalScore < 0 && planningScore > 0 && valueScore > 0) {
+      results.push({
         type: '논리적인 분석가형',
         description: '당신은 논리적이고 체계적인 분석가형 성격을 가진 사람입니다. 객관적 사실을 중시하며, 체계적인 계획을 세워 실행합니다.',
         traits: ['논리적', '체계적', '분석력', '객관성'],
         strengths: ['문제해결력', '계획수립', '분석력', '집중력'],
         weaknesses: ['감정표현 부족', '융통성 부족', '완벽주의'],
         careers: ['연구원', '엔지니어', '데이터 분석가', '컨설턴트']
-      }
-    } else if (relationshipScore < 0 && activityScore < 0 && planningScore > 0) {
-      return {
+      })
+    }
+
+    // 균형잡힌 조화형
+    if (relationshipScore < 0 && activityScore < 0 && planningScore > 0) {
+      results.push({
         type: '균형잡힌 조화형',
         description: '당신은 균형감 있고 조화를 추구하는 성격을 가진 사람입니다. 타인과의 관계를 중시하며, 안정적인 환경을 선호합니다.',
         traits: ['조화로움', '안정성', '신뢰성', '배려심'],
         strengths: ['팀워크', '갈등해결', '신뢰성', '안정성'],
         weaknesses: ['주도성 부족', '변화 거부', '의사결정 지연'],
         careers: ['인사담당', '상담사', '교육자', '행정직']
-      }
-    } else if (adventureScore > 0 && counts.flexible > 0 && activityScore > 0) {
-      return {
+      })
+    }
+
+    // 자유로운 영혼형
+    if (planningScore < 0 && activityScore > 0 && adventureScore > 0) {
+      results.push({
         type: '자유로운 영혼형',
         description: '당신은 자유롭고 창의적인 영혼을 가진 사람입니다. 새로운 경험을 추구하며, 유연하게 상황에 적응합니다.',
         traits: ['자유로움', '창의성', '적응력', '모험심'],
         strengths: ['적응력', '창의력', '도전정신', '유연성'],
         weaknesses: ['책임감 부족', '집중력 부족', '계획성 부족'],
         careers: ['여행작가', '프리랜서', '예술가', '강사']
-      }
-    } else {
-      return {
+      })
+    }
+
+    // 따뜻한 보호자형
+    if (relationshipScore > 0 && emotionalScore > 0 && activityScore < 0) {
+      results.push({
         type: '따뜻한 보호자형',
         description: '당신은 따뜻하고 보호적인 성격을 가진 사람입니다. 타인을 돕고 보호하는 것을 좋아하며, 안정적인 관계를 추구합니다.',
         traits: ['배려심', '보호적', '신뢰성', '안정성'],
         strengths: ['돌봄', '신뢰성', '책임감', '인내심'],
         weaknesses: ['자기희생', '과보호', '변화 거부'],
         careers: ['의료인', '상담사', '교육자', '사회복지사']
-      }
+      })
     }
+
+    // 결과가 없는 경우 기본 유형 반환
+    if (results.length === 0) {
+      results.push({
+        type: '균형잡힌 조화형',
+        description: '당신은 균형감 있고 조화를 추구하는 성격을 가진 사람입니다. 타인과의 관계를 중시하며, 안정적인 환경을 선호합니다.',
+        traits: ['조화로움', '안정성', '신뢰성', '배려심'],
+        strengths: ['팀워크', '갈등해결', '신뢰성', '안정성'],
+        weaknesses: ['주도성 부족', '변화 거부', '의사결정 지연'],
+        careers: ['인사담당', '상담사', '교육자', '행정직']
+      })
+    }
+
+    return results
   }
 
   const progress = ((currentQuestion + 1) / questions.length) * 100
