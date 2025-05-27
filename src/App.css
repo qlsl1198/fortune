@@ -24,9 +24,9 @@ body {
 
 .hero-section {
   margin: 0;
-  padding: 24px 12px;
+  padding: 24px;
   background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
-  border-radius: 0;
+  border-radius: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
@@ -48,10 +48,12 @@ h1 {
 }
 
 .stats {
+  display: flex;
+  justify-content: space-around;
   margin: 0;
-  padding: 20px 12px;
+  padding: 20px;
   background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
-  border-radius: 0;
+  border-radius: 16px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
@@ -83,10 +85,12 @@ h1 {
 }
 
 .features {
+  display: flex;
+  justify-content: space-around;
   margin: 0;
-  padding: 20px 12px;
+  padding: 20px;
   background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
-  border-radius: 0;
+  border-radius: 16px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
@@ -118,10 +122,13 @@ h1 {
 }
 
 .menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   margin: 0;
-  padding: 20px 12px;
+  padding: 20px;
   background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
-  border-radius: 0;
+  border-radius: 16px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
@@ -171,17 +178,17 @@ h1 {
 
 .ad-banner {
   margin: 0;
-  padding: 20px 12px;
+  padding: 20px;
   background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
-  border-radius: 0;
+  border-radius: 16px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .footer {
   margin: 0;
-  padding: 20px 12px;
+  padding: 20px;
   background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
-  border-radius: 0;
+  border-radius: 16px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
@@ -448,7 +455,9 @@ h1 {
   .menu-buttons,
   .ad-banner,
   .footer {
-    padding: 16px 12px;
+    margin: 16px 12px;
+    padding: 16px;
+    border-radius: 16px;
   }
   
   .hero-section {
@@ -526,6 +535,14 @@ h1 {
   .share-button,
   .retry-button {
     width: 100%;
+  }
+  
+  .footer p {
+    font-size: 0.9rem;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
   }
 }
 
