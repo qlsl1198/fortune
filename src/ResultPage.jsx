@@ -151,7 +151,7 @@ function ResultPage() {
   const handleShare = () => {
     const shareText = `✨ 성격 유형 테스트 결과 ✨\n\n${results.map(result => 
       `${result.type}\n\n${result.description}\n\n특징\n${result.traits.join(', ')}\n\n강점\n${result.strengths.join(', ')}\n\n약점\n${result.weaknesses.join(', ')}\n\n추천 직업\n${result.careers.join(', ')}\n\n`
-    ).join('---\n\n')}#성격유형 #심리테스트 #MBTI`;
+    ).join('---\n\n')}#성격유형 #심리테스트`;
     navigator.clipboard.writeText(shareText);
     setShowCopied(true);
     setTimeout(() => setShowCopied(false), 2000);
