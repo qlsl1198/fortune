@@ -161,9 +161,12 @@ export default function TestPage() {
       </div>
 
       <div className="ad-banner">
-        <div style={{background:'#eee', padding:'16px', textAlign:'center', borderRadius:'8px'}}>
-          광고 배너 자리
-        </div>
+        <ins className="kakao_ad_area" 
+          style={{ display: 'none' }}
+          data-ad-unit="DAN-rz0SXdqQnXMRUyny"
+          data-ad-width="320"
+          data-ad-height="100"
+        />
       </div>
     </div>
   )
