@@ -5,6 +5,7 @@ import ResultPage from './ResultPage'
 import FortunePage from './FortunePage'
 import TarotPage from './TarotPage'
 import { useState, useEffect } from 'react'
+import KakaoAdfit from './components/KakaoAdfit'
 
 function Home() {
   const [isAdLoaded, setIsAdLoaded] = useState(false)
@@ -115,13 +116,40 @@ function Home() {
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/test" element={<TestPage />} />
-        <Route path="/result" element={<ResultPage />} />
-        <Route path="/fortune" element={<FortunePage />} />
-        <Route path="/tarot" element={<TarotPage />} />
-      </Routes>
+      <div className="app">
+        <Routes>
+          <Route path="/" element={
+            <>
+              <Home />
+              <KakaoAdfit adUnit="DAN-j8hkWoleauwZehWh" />
+            </>
+          } />
+          <Route path="/test" element={
+            <>
+              <TestPage />
+              <KakaoAdfit adUnit="DAN-YoGidYmDgk3hwQ0d" />
+            </>
+          } />
+          <Route path="/result" element={
+            <>
+              <ResultPage />
+              <KakaoAdfit adUnit="DAN-IOhRXN69DcIdSEnI" />
+            </>
+          } />
+          <Route path="/tarot" element={
+            <>
+              <TarotPage />
+              <KakaoAdfit adUnit="DAN-H8ERcNgrJCMrs1Ub" />
+            </>
+          } />
+          <Route path="/fortune" element={
+            <>
+              <FortunePage />
+              <KakaoAdfit adUnit="DAN-rz0SXdqQnXMRUyny" />
+            </>
+          } />
+        </Routes>
+      </div>
     </Router>
   )
 }
